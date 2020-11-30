@@ -14,10 +14,12 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Center(
         child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               MyAppBar(),
-              Text('What\'s up, Tan Loc'),
+              Text('What\'s up, Tan Loc',
+                  style: Theme.of(context).textTheme.headline5)
             ]),
       ),
       floatingActionButton: FloatingActionButton(
