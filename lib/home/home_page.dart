@@ -19,7 +19,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               MyAppBar(),
               Text('What\'s up, Tan Loc',
-                  style: Theme.of(context).textTheme.headline5)
+                  style: Theme.of(context).textTheme.headline4)
             ]),
       ),
       floatingActionButton: FloatingActionButton(

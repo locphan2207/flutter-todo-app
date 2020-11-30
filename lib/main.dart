@@ -12,13 +12,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     var textTheme = theme.textTheme;
-    print(textTheme);
 
     return MaterialApp(
       title: 'Noter',
       theme: ThemeData(
         textTheme: textTheme.copyWith(
-            headline5: textTheme.headline5.copyWith(color: MyColors.black)),
+            headline4: textTheme.headline4.copyWith(
+                color: MyColors.black,
+                fontWeight: FontWeight.w400,
+                fontFamily: 'PoiretOne')),
         visualDensity: VisualDensity.comfortable,
       ),
       home: SafeArea(child: HomePage()),
