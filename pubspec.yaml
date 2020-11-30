@@ -73,6 +73,6 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
   fonts:
-    - family: PoiretOne
+    - family: SourceSansPro
       fonts:
-        - asset: fonts/PoiretOne-Regular.ttf
+        - asset: fonts/SourceSansPro-SemiBold.ttf
