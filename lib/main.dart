@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
         textTheme: textTheme.copyWith(
             headline4: textTheme.headline4.copyWith(
                 color: MyColors.black,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'SourceSans')),
+                fontWeight: FontWeight.w600,
+                fontFamily: 'Nunito')),
         visualDensity: VisualDensity.comfortable,
       ),
       home: SafeArea(child: HomePage()),

@@ -76,3 +76,10 @@ flutter:
     - family: SourceSansPro
       fonts:
         - asset: fonts/SourceSansPro-SemiBold.ttf
+    - family: Nunito
+      fonts:
+        - asset: fonts/Nunito-Light.ttf
+          weight: 300
+        - asset: fonts/Nunito-Regular.ttf
+        - asset: fonts/Nunito-SemiBold.ttf
+          weight: 600
