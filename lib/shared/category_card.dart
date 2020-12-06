@@ -11,6 +11,17 @@ class CategoryCard extends StatelessWidget {
     return SizedBox(
         height: 100,
         width: 200,
-        child: Card(child: Column(children: [Text('$total'), Text(title)])));
+        child: Card(
+            borderOnForeground: false,
+            elevation: 4,
+            child: Padding(
+              padding: EdgeInsets.all(8),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('$total tasks'),
+                    Text(title, style: Theme.of(context).textTheme.headline6)
+                  ]),
+            )));
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/shared/app_bar.dart';
+import 'package:flutter_todo_app/home/task_list.dart';
 import 'package:flutter_todo_app/home/category_carousel.dart';
+import 'package:flutter_todo_app/shared/app_bar.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -15,13 +16,15 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: Center(
         child: Column(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+            children: [
               MyAppBar(),
               Text('What\'s up, Tan Loc',
                   style: Theme.of(context).textTheme.headline4),
               CategoryCarousel(),
+              Expanded(child: TaskList()),
             ]),
       ),
       floatingActionButton: FloatingActionButton(
