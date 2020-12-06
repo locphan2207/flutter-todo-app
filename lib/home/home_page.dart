@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import '../shared/app_bar.dart';
+import 'package:flutter_todo_app/shared/app_bar.dart';
+import 'package:flutter_todo_app/shared/carousel.dart';
+import 'package:flutter_todo_app/shared/category_card.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -19,7 +21,13 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               MyAppBar(),
               Text('What\'s up, Tan Loc',
-                  style: Theme.of(context).textTheme.headline4)
+                  style: Theme.of(context).textTheme.headline4),
+              Carousel(children: <Widget>[
+                CategoryCard(title: 'Card1', total: 43),
+                CategoryCard(title: 'Card2', total: 44),
+                CategoryCard(title: 'Card3', total: 45),
+                CategoryCard(title: 'Card4', total: 23),
+              ]),
             ]),
       ),
       floatingActionButton: FloatingActionButton(
