@@ -53,8 +53,8 @@ class MyApp extends StatelessWidget {
                 create: (context) => AppModel(),
                 child: Stack(children: [
                   Container(child: Text('hel')),
-                  Consumer<AppModel>(builder: (ctx, appModel, child) {
-                    return Expanded(child: HomePage());
+                  Consumer<AppModel>(builder: (_, appModel, __) {
+                    return HomePage(appModel: appModel);
                   }),
                 ]),
               ))),
