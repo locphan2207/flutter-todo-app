@@ -17,21 +17,26 @@ class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation<Offset> _offsetAnimation;
+  Animation<double> _scaleAnimation;
 
   @override
   void initState() {
-    print('init');
     super.initState();
     _controller = AnimationController(
         duration: const Duration(milliseconds: 500),
         reverseDuration: const Duration(milliseconds: 500),
         vsync: this);
     _offsetAnimation =
-        Tween<Offset>(begin: Offset.zero, end: const Offset(0.8, 0.0)).animate(
+        Tween<Offset>(begin: Offset.zero, end: const Offset(0.7, 0.0)).animate(
             CurvedAnimation(
                 parent: _controller,
                 curve: MyAnimations.drawerCurve,
                 reverseCurve: MyAnimations.drawerCurve.flipped));
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.9).animate(
+        CurvedAnimation(
+            parent: _controller,
+            curve: MyAnimations.drawerCurve,
+            reverseCurve: MyAnimations.drawerCurve.flipped));
   }
 
   @override
@@ -79,9 +84,11 @@ class _HomePageState extends State<HomePage>
       animation: _controller,
       builder: (_, homeWidget) {
         return SlideTransition(
-          position: _offsetAnimation,
-          child: homeWidget,
-        );
+            position: _offsetAnimation,
+            child: ScaleTransition(
+              scale: _scaleAnimation,
+              child: homeWidget,
+            ));
       },
     );
   }
