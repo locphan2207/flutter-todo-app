@@ -7,7 +7,6 @@ class AppModel extends ChangeNotifier {
 
   void toggleDrawer() {
     _isDrawerOpen = !_isDrawerOpen;
-    print(_isDrawerOpen);
     notifyListeners();
   }
 }

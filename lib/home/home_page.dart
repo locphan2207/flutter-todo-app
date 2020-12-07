@@ -1,11 +1,8 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/home/task_list.dart';
 import 'package:flutter_todo_app/home/category_carousel.dart';
 import 'package:flutter_todo_app/models/app_model.dart';
 import 'package:flutter_todo_app/shared/app_bar.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   final AppModel appModel;
@@ -25,12 +22,28 @@ class _HomePageState extends State<HomePage>
     print('init');
     super.initState();
     _controller =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this)
-          ..repeat();
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
     _offsetAnimation = Tween<Offset>(
             begin: const Offset(0.0, 0.0), end: const Offset(0.5, 0.0))
         .animate(_controller);
-    print(_offsetAnimation);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    print('change');
+  }
+
+  @override
+  void didUpdateWidget(oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print('update ${widget.appModel.isDrawerOpen}');
+    var isDrawerOpen = widget.appModel.isDrawerOpen;
+    if (isDrawerOpen) {
+      _controller.forward();
+    } else {
+      _controller.reverse();
+    }
   }
 
   @override
