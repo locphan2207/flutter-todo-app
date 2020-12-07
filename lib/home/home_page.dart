@@ -30,13 +30,13 @@ class _HomePageState extends State<HomePage>
         Tween<Offset>(begin: Offset.zero, end: const Offset(0.7, 0.0)).animate(
             CurvedAnimation(
                 parent: _controller,
-                curve: MyAnimations.drawerCurve,
-                reverseCurve: MyAnimations.drawerCurve.flipped));
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.9).animate(
+                curve: MyCurves.drawerOffset,
+                reverseCurve: MyCurves.drawerOffset.flipped));
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.93).animate(
         CurvedAnimation(
             parent: _controller,
-            curve: MyAnimations.drawerCurve,
-            reverseCurve: MyAnimations.drawerCurve.flipped));
+            curve: MyCurves.drawerScale,
+            reverseCurve: MyCurves.drawerScale));
   }
 
   @override
