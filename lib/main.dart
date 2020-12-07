@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/drawer/drawer.dart';
+import 'package:flutter_todo_app/drawer/menu.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_todo_app/models/app_model.dart';
 import 'package:flutter_todo_app/home/home_page.dart';
@@ -36,10 +36,8 @@ class MyApp extends StatelessWidget {
               color: MyColors.black,
               fontWeight: FontWeight.w600,
               fontFamily: 'Nunito'),
-          subtitle2: textTheme.subtitle2.copyWith(
-              color: MyColors.black,
-              // fontWeight: FontWeight.w600,
-              fontFamily: 'Nunito'),
+          subtitle2: textTheme.subtitle2
+              .copyWith(color: MyColors.black, fontFamily: 'Nunito'),
           bodyText1: textTheme.bodyText1.copyWith(
               color: MyColors.black,
               fontWeight: FontWeight.w500,

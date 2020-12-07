@@ -8,8 +8,10 @@ class MyColors {
 class MyCurves {
   static const drawerOffset = Curves.fastOutSlowIn;
   static const drawerScale = Curves.easeInBack;
+  static const menuOffset = Interval(0.5, 1, curve: Curves.ease);
 }
 
 class MyDurations {
   static const drawerAnimation = Duration(milliseconds: 500);
+  static const menuAnimation = Duration(milliseconds: 600);
 }

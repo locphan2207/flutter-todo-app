@@ -23,8 +23,8 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 500),
-        reverseDuration: const Duration(milliseconds: 500),
+        duration: MyDurations.drawerAnimation,
+        reverseDuration: MyDurations.drawerAnimation,
         vsync: this);
     _offsetAnimation =
         Tween<Offset>(begin: Offset.zero, end: const Offset(0.7, 0.0)).animate(
@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage>
                 parent: _controller,
                 curve: MyCurves.drawerOffset,
                 reverseCurve: MyCurves.drawerOffset.flipped));
-    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.93).animate(
+    _scaleAnimation = Tween<double>(begin: 1.0, end: 0.9).animate(
         CurvedAnimation(
             parent: _controller,
             curve: MyCurves.drawerScale,
@@ -58,8 +58,6 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
-    // var screenSize = MediaQuery.of(context).size;
-
     return AnimatedBuilder(
       child: Scaffold(
         body: Center(
