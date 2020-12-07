@@ -22,24 +22,20 @@ class _HomePageState extends State<HomePage>
     print('init');
     super.initState();
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 300),
-        reverseDuration: const Duration(milliseconds: 300),
+        duration: const Duration(milliseconds: 400),
+        reverseDuration: const Duration(milliseconds: 400),
         vsync: this);
     _offsetAnimation =
         Tween<Offset>(begin: Offset.zero, end: const Offset(0.8, 0.0)).animate(
-            CurvedAnimation(parent: _controller, curve: Curves.easeInCubic));
-  }
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    print('change');
+            CurvedAnimation(
+                parent: _controller,
+                curve: Curves.easeOutCubic,
+                reverseCurve: Curves.easeOutCubic.flipped));
   }
 
   @override
   void didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print('update ${widget.appModel.isDrawerOpen}');
     var isDrawerOpen = widget.appModel.isDrawerOpen;
     if (isDrawerOpen) {
       _controller.forward();
