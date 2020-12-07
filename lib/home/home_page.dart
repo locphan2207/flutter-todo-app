@@ -3,6 +3,7 @@ import 'package:flutter_todo_app/home/task_list.dart';
 import 'package:flutter_todo_app/home/category_carousel.dart';
 import 'package:flutter_todo_app/models/app_model.dart';
 import 'package:flutter_todo_app/shared/app_bar.dart';
+import 'package:flutter_todo_app/constants.dart';
 
 class HomePage extends StatefulWidget {
   final AppModel appModel;
@@ -22,15 +23,15 @@ class _HomePageState extends State<HomePage>
     print('init');
     super.initState();
     _controller = AnimationController(
-        duration: const Duration(milliseconds: 400),
-        reverseDuration: const Duration(milliseconds: 400),
+        duration: const Duration(milliseconds: 500),
+        reverseDuration: const Duration(milliseconds: 500),
         vsync: this);
     _offsetAnimation =
         Tween<Offset>(begin: Offset.zero, end: const Offset(0.8, 0.0)).animate(
             CurvedAnimation(
                 parent: _controller,
-                curve: Curves.easeOutCubic,
-                reverseCurve: Curves.easeOutCubic.flipped));
+                curve: MyAnimations.drawerCurve,
+                reverseCurve: MyAnimations.drawerCurve.flipped));
   }
 
   @override

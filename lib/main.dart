@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/models/app_model.dart';
 import 'package:provider/provider.dart';
-import 'shared/colors.dart';
-import 'home/home_page.dart';
+import 'package:flutter_todo_app/models/app_model.dart';
+import 'package:flutter_todo_app/home/home_page.dart';
+import 'package:flutter_todo_app/constants.dart';
 
 void main() {
   runApp(MyApp());
