@@ -21,11 +21,13 @@ class _HomePageState extends State<HomePage>
   void initState() {
     print('init');
     super.initState();
-    _controller =
-        AnimationController(duration: const Duration(seconds: 2), vsync: this);
-    _offsetAnimation = Tween<Offset>(
-            begin: const Offset(0.0, 0.0), end: const Offset(0.5, 0.0))
-        .animate(_controller);
+    _controller = AnimationController(
+        duration: const Duration(milliseconds: 300),
+        reverseDuration: const Duration(milliseconds: 300),
+        vsync: this);
+    _offsetAnimation =
+        Tween<Offset>(begin: Offset.zero, end: const Offset(0.8, 0.0)).animate(
+            CurvedAnimation(parent: _controller, curve: Curves.easeInCubic));
   }
 
   @override
