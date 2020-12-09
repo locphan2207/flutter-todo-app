@@ -49,19 +49,18 @@ class MyApp extends StatelessWidget {
         ),
         visualDensity: VisualDensity.comfortable,
       ),
-      home: SafeArea(
-          child: Container(
-              color: Colors.black12,
-              child: ChangeNotifierProvider(
-                  create: (context) => AppModel(),
-                  child: Consumer<AppModel>(builder: (_, appModel, __) {
-                    return Stack(
-                      children: [
-                        Menu(appModel: appModel),
-                        HomePage(appModel: appModel),
-                      ],
-                    );
-                  })))),
+      home: Container(
+          color: Colors.black12,
+          child: ChangeNotifierProvider(
+              create: (context) => AppModel(),
+              child: Consumer<AppModel>(builder: (_, appModel, __) {
+                return Stack(
+                  children: [
+                    Menu(appModel: appModel),
+                    HomePage(appModel: appModel),
+                  ],
+                );
+              }))),
     );
   }
 }

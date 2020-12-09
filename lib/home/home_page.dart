@@ -59,24 +59,30 @@ class _HomePageState extends State<HomePage>
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-      child: Scaffold(
-        body: Center(
-          child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                MyAppBar(),
-                Text('What\'s up, Tan Loc',
-                    style: Theme.of(context).textTheme.headline4),
-                CategoryCarousel(),
-                Expanded(child: TaskList()),
-              ]),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () => print('hello'),
-          tooltip: 'Increment',
-          child: Icon(Icons.add),
+      child: ClipRRect(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(18), topRight: Radius.circular(18)),
+        child: Scaffold(
+          body: SafeArea(
+            child: Center(
+              child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    MyAppBar(),
+                    Text('What\'s up, Tan Loc',
+                        style: Theme.of(context).textTheme.headline4),
+                    CategoryCarousel(),
+                    Expanded(child: TaskList()),
+                  ]),
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () => print('hello'),
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+          ),
         ),
       ),
       animation: _controller,
