@@ -60,8 +60,9 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       child: ClipRRect(
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(18), topRight: Radius.circular(18)),
+        borderRadius: BorderRadius.circular(34),
+        // borderRadius: BorderRadius.only(
+        //     topLeft: Radius.circular(18), topRight: Radius.circular(18)),
         child: Scaffold(
           body: SafeArea(
             child: Center(
@@ -88,11 +89,12 @@ class _HomePageState extends State<HomePage>
       animation: _controller,
       builder: (_, homeWidget) {
         return SlideTransition(
-            position: _offsetAnimation,
-            child: ScaleTransition(
-              scale: _scaleAnimation,
-              child: homeWidget,
-            ));
+          position: _offsetAnimation,
+          child: ScaleTransition(
+            scale: _scaleAnimation,
+            child: homeWidget,
+          ),
+        );
       },
     );
   }
