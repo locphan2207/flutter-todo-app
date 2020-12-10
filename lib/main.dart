@@ -20,29 +20,45 @@ class MyApp extends StatelessWidget {
       title: 'Noter',
       theme: ThemeData(
         textTheme: textTheme.copyWith(
-          headline4: textTheme.headline4.copyWith(
+          headline1: TextStyle(
               color: MyColors.black,
+              fontSize: 35,
               fontWeight: FontWeight.w700,
               fontFamily: 'Nunito'),
-          headline5: textTheme.headline5.copyWith(
+          headline2: TextStyle(
               color: MyColors.black,
+              fontSize: 30,
+              fontWeight: FontWeight.w700,
+              fontFamily: 'Nunito'),
+          headline3: TextStyle(
+              color: MyColors.black,
+              fontWeight: FontWeight.w700,
+              letterSpacing: 0.5,
+              fontSize: 20,
+              fontFamily: 'Nunito'),
+          headline4: TextStyle(
+              color: MyColors.black,
+              fontSize: 16,
               fontWeight: FontWeight.w600,
               fontFamily: 'Nunito'),
-          headline6: textTheme.headline6.copyWith(
-              color: MyColors.black,
+          subtitle1: TextStyle(
+              color: MyColors.darkGray,
+              letterSpacing: 0.5,
+              fontSize: 14,
               fontWeight: FontWeight.w600,
               fontFamily: 'Nunito'),
-          subtitle1: textTheme.subtitle1.copyWith(
+          subtitle2: TextStyle(
               color: MyColors.black,
+              letterSpacing: 0.5,
+              fontSize: 12,
               fontWeight: FontWeight.w600,
               fontFamily: 'Nunito'),
-          subtitle2: textTheme.subtitle2
-              .copyWith(color: MyColors.black, fontFamily: 'Nunito'),
-          bodyText1: textTheme.bodyText1.copyWith(
+          bodyText1: TextStyle(
               color: MyColors.black,
+              letterSpacing: 0.1,
               fontWeight: FontWeight.w500,
               fontFamily: 'Nunito'),
-          bodyText2: textTheme.bodyText2.copyWith(
+          bodyText2: TextStyle(
               color: MyColors.black,
               fontWeight: FontWeight.w500,
               fontFamily: 'Nunito'),

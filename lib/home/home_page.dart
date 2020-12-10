@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage>
                   children: [
                     MyAppBar(),
                     Text('What\'s up, Tan Loc',
-                        style: Theme.of(context).textTheme.headline4),
+                        style: Theme.of(context).textTheme.headline1),
                     CategoryCarousel(),
                     Expanded(child: TaskList()),
                   ]),

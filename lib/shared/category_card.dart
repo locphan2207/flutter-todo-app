@@ -19,8 +19,9 @@ class CategoryCard extends StatelessWidget {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('$total tasks'),
-                    Text(title, style: Theme.of(context).textTheme.headline6)
+                    Text('$total tasks',
+                        style: Theme.of(context).textTheme.subtitle2),
+                    Text(title, style: Theme.of(context).textTheme.headline3)
                   ]),
             )));
   }
