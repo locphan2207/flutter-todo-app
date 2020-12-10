@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/constants.dart';
 
 class TaskCard extends StatelessWidget {
   final String taskString;
@@ -8,9 +9,12 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        color: Colors.black12,
-        margin: EdgeInsets.symmetric(vertical: 8.0),
-        padding: EdgeInsets.symmetric(vertical: 16.0),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(MyRadius.medium),
+          color: Colors.black12,
+        ),
+        margin: EdgeInsets.symmetric(vertical: MySpacing.small),
+        padding: EdgeInsets.all(MySpacing.medium),
         child: Row(
           children: [
             Icon(Icons.circle),

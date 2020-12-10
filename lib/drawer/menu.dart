@@ -19,12 +19,12 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     _controller = AnimationController(
-        duration: MyDurations.menuAnimation,
-        reverseDuration: MyDurations.menuAnimation,
+        duration: MyDuration.menuAnimation,
+        reverseDuration: MyDuration.menuAnimation,
         vsync: this);
     _offsetAnimation =
         Tween<Offset>(begin: const Offset(-1.0, 0.0), end: Offset.zero).animate(
-            CurvedAnimation(parent: _controller, curve: MyCurves.menuOffset));
+            CurvedAnimation(parent: _controller, curve: MyCurve.menuOffset));
   }
 
   @override
@@ -47,9 +47,9 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     var nameStyle =
-        Theme.of(context).textTheme.headline4.copyWith(color: MyColors.white);
+        Theme.of(context).textTheme.headline4.copyWith(color: MyColor.white);
     var itemStyle =
-        Theme.of(context).textTheme.subtitle2.copyWith(color: MyColors.white);
+        Theme.of(context).textTheme.subtitle2.copyWith(color: MyColor.white);
 
     return AnimatedBuilder(
         child: Column(

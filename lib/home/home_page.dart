@@ -23,20 +23,20 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _controller = AnimationController(
-        duration: MyDurations.drawerAnimation,
-        reverseDuration: MyDurations.drawerAnimation,
+        duration: MyDuration.drawerAnimation,
+        reverseDuration: MyDuration.drawerAnimation,
         vsync: this);
     _offsetAnimation =
         Tween<Offset>(begin: Offset.zero, end: const Offset(0.7, 0.0)).animate(
             CurvedAnimation(
                 parent: _controller,
-                curve: MyCurves.drawerOffset,
-                reverseCurve: MyCurves.drawerOffset.flipped));
+                curve: MyCurve.drawerOffset,
+                reverseCurve: MyCurve.drawerOffset.flipped));
     _scaleAnimation = Tween<double>(begin: 1.0, end: 0.9).animate(
         CurvedAnimation(
             parent: _controller,
-            curve: MyCurves.drawerScale,
-            reverseCurve: MyCurves.drawerScale));
+            curve: MyCurve.drawerScale,
+            reverseCurve: MyCurve.drawerScale));
   }
 
   @override
@@ -60,22 +60,31 @@ class _HomePageState extends State<HomePage>
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(34),
+        borderRadius: BorderRadius.circular(MyRadius.device),
         child: Scaffold(
           body: SafeArea(
-            child: Center(
-              child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    MyAppBar(),
-                    Text('What\'s up, Tan Loc',
-                        style: Theme.of(context).textTheme.headline1),
-                    CategoryCarousel(),
-                    Expanded(child: TaskList()),
-                  ]),
-            ),
+            child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  MyAppBar(),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: MySpacing.medium),
+                    child: Text('What\'s up, Tan Loc',
+                        style: Theme.of(context).textTheme.headline2),
+                  ),
+                  SizedBox(height: MySpacing.medium),
+                  CategoryCarousel(),
+                  SizedBox(height: MySpacing.medium),
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: MySpacing.medium),
+                    child: TaskList(),
+                  )),
+                ]),
           ),
           floatingActionButton: FloatingActionButton(
             onPressed: () => print('hello'),

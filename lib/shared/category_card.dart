@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/constants.dart';
 
 class CategoryCard extends StatelessWidget {
   final String title;
@@ -8,21 +9,32 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-        height: 100,
-        width: 200,
-        child: Card(
-            borderOnForeground: false,
-            elevation: 4,
-            child: Padding(
-              padding: EdgeInsets.all(8),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('$total tasks',
-                        style: Theme.of(context).textTheme.subtitle2),
-                    Text(title, style: Theme.of(context).textTheme.headline3)
-                  ]),
-            )));
+    return Container(
+      margin: EdgeInsets.only(
+        bottom: 12,
+      ), // to show box shadow
+      child: SizedBox(
+          width: MySize.categoryCardWidth,
+          child: Card(
+              borderOnForeground: false,
+              clipBehavior: Clip.antiAliasWithSaveLayer,
+              elevation: 10,
+              margin: EdgeInsets.only(
+                  left: MySpacing.medium,
+                  top: MySpacing.small,
+                  bottom: MySpacing.small),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(MyRadius.medium)),
+              child: Padding(
+                padding: EdgeInsets.all(MySpacing.medium),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('$total tasks',
+                          style: Theme.of(context).textTheme.subtitle2),
+                      Text(title, style: Theme.of(context).textTheme.headline3)
+                    ]),
+              ))),
+    );
   }
 }
