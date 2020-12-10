@@ -3,6 +3,11 @@ import 'package:flutter/material.dart';
 class MyColors {
   static const black = Color(0xFF020417);
   static const white = Color(0xFFF4F6FD);
+  static const darkGray = Color(0xFF373B5e);
+  static const lightGray = Color(0xFF9D9AB4);
+  static const blueGray = Color(0xFFADBAEB);
+  static const blue = Color(0xFF2643C4);
+  static const purple = Color(0xFFA056C5);
 }
 
 class MyCurves {

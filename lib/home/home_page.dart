@@ -61,8 +61,6 @@ class _HomePageState extends State<HomePage>
     return AnimatedBuilder(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(34),
-        // borderRadius: BorderRadius.only(
-        //     topLeft: Radius.circular(18), topRight: Radius.circular(18)),
         child: Scaffold(
           body: SafeArea(
             child: Center(

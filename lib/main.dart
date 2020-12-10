@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         textTheme: textTheme.copyWith(
           headline4: textTheme.headline4.copyWith(
               color: MyColors.black,
-              fontWeight: FontWeight.w600,
+              fontWeight: FontWeight.w700,
               fontFamily: 'Nunito'),
           headline5: textTheme.headline5.copyWith(
               color: MyColors.black,

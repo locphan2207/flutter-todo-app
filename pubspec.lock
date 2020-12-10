@@ -73,7 +73,6 @@ packages:
       name: matcher
       url: "https://pub.dartlang.org"
     source: hosted
-  provider: ^4.3.0
     version: "0.12.10-nullsafety.1"
   meta:
     dependency: transitive
@@ -102,7 +101,7 @@ packages:
       name: provider
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.3.2+2"
+    version: "4.3.2+3"
   sky_engine:
     dependency: transitive
     description: flutter
