@@ -8,6 +8,8 @@ class MyColor {
   static const blueGray = Color(0xFFADBAEB);
   static const blue = Color(0xFF2643C4);
   static const purple = Color(0xFFA056C5);
+
+  static const shadow = Color(0x509D9AB4);
 }
 
 class MyCurve {
@@ -22,8 +24,11 @@ class MyDuration {
 }
 
 class MySpacing {
+  static const tiny = 4.0;
   static const small = 8.0;
   static const medium = 16.0;
+  static const xMedium = 20.0;
+  static const big = 32.0;
 }
 
 class MyRadius {
@@ -36,4 +41,6 @@ class MyRadius {
 class MySize {
   static const categoryCardHeight = 150.0;
   static const categoryCardWidth = 200.0;
+
+  static const taskCircle = 20.0;
 }

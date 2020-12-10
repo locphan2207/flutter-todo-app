@@ -62,6 +62,7 @@ class _HomePageState extends State<HomePage>
       child: ClipRRect(
         borderRadius: BorderRadius.circular(MyRadius.device),
         child: Scaffold(
+          backgroundColor: MyColor.white,
           body: SafeArea(
             child: Column(
                 mainAxisSize: MainAxisSize.max,
@@ -72,8 +73,8 @@ class _HomePageState extends State<HomePage>
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: MySpacing.medium),
-                    child: Text('What\'s up, Tan Loc',
-                        style: Theme.of(context).textTheme.headline2),
+                    child: Text('What\'s up, Tan Loc!',
+                        style: Theme.of(context).textTheme.headline1),
                   ),
                   SizedBox(height: MySpacing.medium),
                   CategoryCarousel(),

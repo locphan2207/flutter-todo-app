@@ -15,16 +15,23 @@ class CategoryCard extends StatelessWidget {
       ), // to show box shadow
       child: SizedBox(
           width: MySize.categoryCardWidth,
-          child: Card(
-              borderOnForeground: false,
+          child: Container(
               clipBehavior: Clip.antiAliasWithSaveLayer,
-              elevation: 10,
               margin: EdgeInsets.only(
                   left: MySpacing.medium,
                   top: MySpacing.small,
                   bottom: MySpacing.small),
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(MyRadius.medium)),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(MyRadius.medium),
+                boxShadow: [
+                  BoxShadow(
+                      color: MyColor.shadow,
+                      offset: Offset(0, 12.0),
+                      blurRadius: MyRadius.small)
+                ],
+              ),
               child: Padding(
                 padding: EdgeInsets.all(MySpacing.medium),
                 child: Column(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/shared/task_card.dart';
 
 class TaskList extends StatelessWidget {
@@ -11,15 +12,19 @@ class TaskList extends StatelessWidget {
         Flexible(
           fit: FlexFit.loose,
           child: ListView(
+            padding: EdgeInsets.symmetric(vertical: MySpacing.medium),
             children: [
-              TaskCard('Do something'),
-              TaskCard('Make something'),
-              TaskCard('Go to this place'),
-              TaskCard('Make sure to practise this thing'),
-              TaskCard('Buy this from the market'),
-              TaskCard('Call someone to remind about something'),
-              TaskCard('Call someone to remind about something'),
-              TaskCard('Call someone to remind about something'),
+              TaskCard('Do something', Colors.pink),
+              TaskCard('Make something', Colors.pink),
+              TaskCard('Go to this place', Colors.lightBlue),
+              TaskCard('Make sure to practise this thing', Colors.lightBlue),
+              TaskCard('Buy this from the market', Colors.pink),
+              TaskCard(
+                  'Call someone to remind about something', Colors.lightBlue),
+              TaskCard(
+                  'Call someone to remind about something for someone yeah',
+                  Colors.pink),
+              TaskCard('Call someone to remind about something', Colors.pink),
             ],
           ),
         ),
