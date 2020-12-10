@@ -39,6 +39,7 @@ class CategoryCard extends StatelessWidget {
                     children: [
                       Text('$total tasks',
                           style: Theme.of(context).textTheme.subtitle2),
+                      SizedBox(height: MySpacing.small),
                       Text(title, style: Theme.of(context).textTheme.headline3)
                     ]),
               ))),

@@ -33,8 +33,7 @@ class MyApp extends StatelessWidget {
           headline3: TextStyle(
               color: MyColor.black,
               fontWeight: FontWeight.w700,
-              letterSpacing: 0.5,
-              fontSize: 20,
+              fontSize: 22,
               fontFamily: 'Nunito'),
           headline4: TextStyle(
               color: MyColor.black,
@@ -43,14 +42,14 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Nunito'),
           subtitle1: TextStyle(
               color: MyColor.lightGray,
-              letterSpacing: 0.5,
-              fontSize: 14,
+              letterSpacing: 1.0,
+              fontSize: 13,
               fontWeight: FontWeight.w700,
               fontFamily: 'Nunito'),
           subtitle2: TextStyle(
               color: MyColor.lightGray,
               letterSpacing: 0.5,
-              fontSize: 12,
+              fontSize: 11,
               fontWeight: FontWeight.w700,
               fontFamily: 'Nunito'),
           bodyText1: TextStyle(

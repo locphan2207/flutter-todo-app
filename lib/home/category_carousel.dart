@@ -15,8 +15,8 @@ class CategoryCarousel extends StatelessWidget {
               Text('CATEGORIES', style: Theme.of(context).textTheme.subtitle1),
         ),
         Carousel(height: MySize.categoryCardHeight, children: <Widget>[
-          CategoryCard(title: 'Card1', total: 43),
-          CategoryCard(title: 'Card2', total: 44),
+          CategoryCard(title: 'Business', total: 43),
+          CategoryCard(title: 'Personal', total: 44),
           CategoryCard(title: 'Card3', total: 45),
           CategoryCard(title: 'Card4', total: 23),
         ]),
