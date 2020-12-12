@@ -15,10 +15,14 @@ class CategoryCarousel extends StatelessWidget {
               Text('CATEGORIES', style: Theme.of(context).textTheme.subtitle1),
         ),
         Carousel(height: MySize.categoryCardHeight, children: <Widget>[
-          CategoryCard(title: 'Business', total: 43),
-          CategoryCard(title: 'Personal', total: 44),
-          CategoryCard(title: 'Card3', total: 45),
-          CategoryCard(title: 'Card4', total: 23),
+          CategoryCard(
+              title: 'Business', done: 42, total: 43, color: Colors.pink),
+          CategoryCard(
+              title: 'Personal', done: 10, total: 44, color: Colors.lightBlue),
+          CategoryCard(
+              title: 'Card3', done: 33, total: 45, color: Colors.lightGreen),
+          CategoryCard(
+              title: 'Card4', done: 2, total: 23, color: Colors.yellowAccent),
         ]),
       ],
     );

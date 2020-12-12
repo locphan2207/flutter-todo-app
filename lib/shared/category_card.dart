@@ -4,8 +4,10 @@ import 'package:flutter_todo_app/constants.dart';
 class CategoryCard extends StatelessWidget {
   final String title;
   final int total;
+  final int done;
+  final Color color;
 
-  CategoryCard({this.title, this.total});
+  CategoryCard({this.title, this.total, this.done, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +42,23 @@ class CategoryCard extends StatelessWidget {
                       Text('$total tasks',
                           style: Theme.of(context).textTheme.subtitle2),
                       SizedBox(height: MySpacing.small),
-                      Text(title, style: Theme.of(context).textTheme.headline3)
+                      Text(title, style: Theme.of(context).textTheme.headline3),
+                      FractionallySizedBox(
+                        widthFactor: 1,
+                        child: Stack(
+                          children: [
+                            Container(
+                                height: MySize.progressBarHeight,
+                                color: MyColor.blueGray),
+                            FractionallySizedBox(
+                              widthFactor: done / total,
+                              child: Container(
+                                  height: MySize.progressBarHeight,
+                                  color: color),
+                            ),
+                          ],
+                        ),
+                      ),
                     ]),
               ))),
     );
