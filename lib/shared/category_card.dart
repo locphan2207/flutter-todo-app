@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
+import 'package:flutter_todo_app/shared/progress_bar.dart';
 
 class CategoryCard extends StatelessWidget {
   final String title;
@@ -38,27 +39,16 @@ class CategoryCard extends StatelessWidget {
                 padding: EdgeInsets.all(MySpacing.medium),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text('$total tasks',
                           style: Theme.of(context).textTheme.subtitle2),
-                      SizedBox(height: MySpacing.small),
                       Text(title, style: Theme.of(context).textTheme.headline3),
-                      FractionallySizedBox(
-                        widthFactor: 1,
-                        child: Stack(
-                          children: [
-                            Container(
-                                height: MySize.progressBarHeight,
-                                color: MyColor.blueGray),
-                            FractionallySizedBox(
-                              widthFactor: done / total,
-                              child: Container(
-                                  height: MySize.progressBarHeight,
-                                  color: color),
-                            ),
-                          ],
-                        ),
-                      ),
+                      ProgressBar(
+                          ratio: done / total,
+                          accentColor: color,
+                          backgroundColor: MyColor.blueGray,
+                          height: MySize.progressBarHeight),
                     ]),
               ))),
     );
