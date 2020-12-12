@@ -16,14 +16,15 @@ class MyCurve {
   static const drawerOffset = Curves.fastOutSlowIn;
   static const drawerScale = Curves.easeInBack;
   static const menuOffset = Interval(0.5, 1, curve: Curves.ease);
-  static const progressBarSize =
-      Interval(0.5, 1, curve: Curves.linearToEaseOut);
+  static const progressBarSize = Curves.linearToEaseOut;
+  static const taskColor = Curves.linear;
 }
 
 class MyDuration {
   static const drawerAnimation = Duration(milliseconds: 500);
   static const menuAnimation = Duration(milliseconds: 600);
   static const progressBarAnimation = Duration(milliseconds: 1000);
+  static const taskCardAnimation = Duration(milliseconds: 100);
 }
 
 class MySpacing {

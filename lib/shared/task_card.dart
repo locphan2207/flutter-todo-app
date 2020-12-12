@@ -11,45 +11,77 @@ class TaskCard extends StatefulWidget {
   _TaskCardState createState() => _TaskCardState();
 }
 
-class _TaskCardState extends State<TaskCard> {
+class _TaskCardState extends State<TaskCard>
+    with SingleTickerProviderStateMixin {
+  AnimationController _controller;
+  Animation<double> _sizeAnimation;
   bool _isDone = false;
 
-  void handleTap() {
-    setState(() {
-      _isDone = !_isDone;
-    });
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+        duration: MyDuration.taskCardAnimation, vsync: this);
+    _sizeAnimation =
+        CurvedAnimation(parent: _controller, curve: MyCurve.taskColor);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final circle = Container(
+        height: MySize.taskCircle,
+        width: MySize.taskCircle,
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            border: Border.all(width: 2, color: widget.color)));
+
+    final text = Stack(children: [
+      Text(widget.taskString,
+          softWrap: true, style: Theme.of(context).textTheme.bodyText1),
+      SizeTransition(
+          axis: Axis.horizontal,
+          axisAlignment: -1,
+          sizeFactor: _sizeAnimation,
+          child: Text(widget.taskString,
+              softWrap: true,
+              style: Theme.of(context).textTheme.bodyText1.copyWith(
+                  color: MyColor.lightGray,
+                  decoration: TextDecoration.lineThrough)))
+    ]);
+
     return GestureDetector(
       onTap: handleTap,
       child: Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(MyRadius.medium),
-            color: Colors.white,
-          ),
-          margin: EdgeInsets.only(bottom: MySpacing.small),
-          padding: EdgeInsets.symmetric(
-              vertical: MySpacing.xMedium, horizontal: MySpacing.medium),
-          child: Row(
-            children: [
-              Container(
-                  height: MySize.taskCircle,
-                  width: MySize.taskCircle,
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(width: 2, color: widget.color))),
-              SizedBox(width: MySpacing.medium),
-              Flexible(
-                  child: Text(widget.taskString,
-                      style: _isDone
-                          ? Theme.of(context).textTheme.bodyText1.copyWith(
-                                decoration: TextDecoration.lineThrough,
-                              )
-                          : Theme.of(context).textTheme.bodyText1)),
-            ],
-          )),
+        margin: EdgeInsets.only(bottom: MySpacing.small),
+        padding: EdgeInsets.symmetric(
+            vertical: MySpacing.xMedium, horizontal: MySpacing.medium),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(MyRadius.medium),
+          color: Colors.white,
+        ),
+        child: Row(
+          children: [
+            circle,
+            SizedBox(width: MySpacing.medium),
+            Flexible(child: text),
+          ],
+        ),
+      ),
     );
+  }
+
+  void handleTap() {
+    _isDone = !_isDone;
+    if (_isDone) {
+      _controller.forward();
+    } else {
+      _controller.reverse();
+    }
   }
 }
