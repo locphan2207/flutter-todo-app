@@ -17,7 +17,7 @@ class MyCurve {
   static const drawerScale = Curves.easeInBack;
   static const menuOffset = Interval(0.5, 1, curve: Curves.ease);
   static const progressBarSize = Curves.linearToEaseOut;
-  static const taskColor = Curves.linear;
+  static const taskCardSize = Curves.linear;
 }
 
 class MyDuration {

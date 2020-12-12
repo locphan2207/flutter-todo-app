@@ -23,7 +23,7 @@ class _TaskCardState extends State<TaskCard>
     _controller = AnimationController(
         duration: MyDuration.taskCardAnimation, vsync: this);
     _sizeAnimation =
-        CurvedAnimation(parent: _controller, curve: MyCurve.taskColor);
+        CurvedAnimation(parent: _controller, curve: MyCurve.taskCardSize);
   }
 
   @override
@@ -41,6 +41,8 @@ class _TaskCardState extends State<TaskCard>
             shape: BoxShape.circle,
             border: Border.all(width: 2, color: widget.color)));
 
+    // Cross line animation is done hackily by having another same text widget
+    // transitioned from 0 to full size
     final text = Stack(children: [
       Text(widget.taskString,
           softWrap: true, style: Theme.of(context).textTheme.bodyText1),
