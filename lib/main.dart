@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         textTheme: textTheme.copyWith(
           headline1: TextStyle(
               color: MyColor.black,
-              fontSize: 33,
+              fontSize: 36,
               fontWeight: FontWeight.w700,
               fontFamily: 'Nunito'),
           headline2: TextStyle(
@@ -39,6 +39,12 @@ class MyApp extends StatelessWidget {
               color: MyColor.black,
               fontSize: 16,
               fontWeight: FontWeight.w600,
+              fontFamily: 'Nunito'),
+          headline5: TextStyle(
+              color: MyColor.black,
+              letterSpacing: 0.5,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
               fontFamily: 'Nunito'),
           subtitle1: TextStyle(
               color: MyColor.lightGray,

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 
 class MyColor {
   static const black = Color(0xFF020417);
+  static const trueBlack = Color(0xFF0A0A0A);
   static const white = Color(0xFFF4F6FD);
+  static const trueWhite = Color(0xFFFFFFF8);
   static const darkGray = Color(0xFF373B5e);
   static const lightGray = Color(0xFF9D9AB4);
   static const blueGray = Color(0xFFADBAEB);

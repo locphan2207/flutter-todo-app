@@ -65,7 +65,7 @@ class _TaskCardState extends State<TaskCard>
             vertical: MySpacing.xMedium, horizontal: MySpacing.medium),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(MyRadius.medium),
-          color: Colors.white,
+          color: MyColor.trueWhite,
         ),
         child: Row(
           children: [

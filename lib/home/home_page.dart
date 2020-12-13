@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage>
                     padding: const EdgeInsets.symmetric(
                         horizontal: MySpacing.medium),
                     child: Text('What\'s up, Tan Loc!',
-                        style: Theme.of(context).textTheme.headline1),
+                        style: Theme.of(context).textTheme.headline2),
                   ),
                   SizedBox(height: MySpacing.medium),
                   CategoryCarousel(),

@@ -46,27 +46,55 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    var nameStyle =
-        Theme.of(context).textTheme.headline4.copyWith(color: MyColor.white);
+    var nameStyle = Theme.of(context)
+        .textTheme
+        .headline1
+        .copyWith(color: MyColor.trueWhite);
     var itemStyle =
-        Theme.of(context).textTheme.subtitle2.copyWith(color: MyColor.white);
+        Theme.of(context).textTheme.headline5.copyWith(color: MyColor.white);
 
-    return AnimatedBuilder(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Tan Loc', style: nameStyle),
-            Text('Phan', style: nameStyle),
-            Text('Templates', style: itemStyle),
-            Text('Categories', style: itemStyle),
-            Text('Analytics', style: itemStyle),
-            Text('Settings', style: itemStyle),
-          ],
+    final options = [
+      ['Categories', Icons.label_outline],
+      ['Done List', Icons.fact_check_outlined],
+      ['Settings', Icons.settings_outlined],
+    ]
+        .map((option) => Padding(
+              padding: EdgeInsets.symmetric(vertical: MySpacing.small),
+              child: Row(children: [
+                Icon(option[1], color: MyColor.white, size: 24),
+                SizedBox(width: MySpacing.small),
+                Text(option[0], style: itemStyle)
+              ]),
+            ))
+        .toList();
+
+    return Container(
+      color: MyColor.trueBlack,
+      padding: EdgeInsets.symmetric(
+          horizontal: MySpacing.xMedium, vertical: MySpacing.medium),
+      child: FractionallySizedBox(
+        widthFactor: 1,
+        heightFactor: 1,
+        child: AnimatedBuilder(
+          animation: _controller,
+          builder: (_, menuWidget) {
+            return SlideTransition(
+                position: _offsetAnimation, child: menuWidget);
+          },
+          child: SafeArea(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('Tan Loc', style: nameStyle),
+                  Text('Phan', style: nameStyle),
+                  Container(
+                      margin: EdgeInsets.symmetric(vertical: MySpacing.big),
+                      child: Column(children: options)),
+                ]),
+          ),
         ),
-        animation: _controller,
-        builder: (_, menuWidget) {
-          return SlideTransition(position: _offsetAnimation, child: menuWidget);
-        });
+      ),
+    );
   }
 }

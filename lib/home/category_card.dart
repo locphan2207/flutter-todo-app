@@ -25,7 +25,7 @@ class CategoryCard extends StatelessWidget {
                   top: MySpacing.small,
                   bottom: MySpacing.small),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: MyColor.trueWhite,
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(MyRadius.medium),
                 boxShadow: [
