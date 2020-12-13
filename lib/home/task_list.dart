@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
-import 'package:flutter_todo_app/shared/task_card.dart';
+import 'package:flutter_todo_app/home/task_card.dart';
 
 class TaskList extends StatelessWidget {
   @override

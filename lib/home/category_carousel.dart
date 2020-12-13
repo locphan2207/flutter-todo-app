@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/shared/carousel.dart';
-import 'package:flutter_todo_app/shared/category_card.dart';
+import 'package:flutter_todo_app/home/category_card.dart';
 
 class CategoryCarousel extends StatelessWidget {
   @override
