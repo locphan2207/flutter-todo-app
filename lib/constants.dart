@@ -20,6 +20,8 @@ class MyCurve {
   static const menuOffset = Interval(0.5, 1, curve: Curves.ease);
   static const progressBarSize = Curves.linearToEaseOut;
   static const taskCardSize = Curves.linear;
+
+  static const newTaskClipTransition = Curves.fastOutSlowIn;
 }
 
 class MyDuration {
@@ -27,6 +29,9 @@ class MyDuration {
   static const menuAnimation = Duration(milliseconds: 600);
   static const progressBarAnimation = Duration(milliseconds: 1000);
   static const taskCardAnimation = Duration(milliseconds: 100);
+
+  static const newTaskAnimation = Duration(milliseconds: 500);
+  static const newTaskColorAnimation = Duration(milliseconds: 500);
 }
 
 class MySpacing {

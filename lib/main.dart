@@ -50,6 +50,7 @@ class MyApp extends StatelessWidget {
                 pageBuilder: (_, __, ___) => NewTaskPage(),
                 transitionsBuilder: (_, animation, __, child) =>
                     NewTaskPageTransition(animation: animation, child: child),
+                transitionDuration: MyDuration.newTaskAnimation,
               );
             }
             break;
