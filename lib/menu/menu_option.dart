@@ -4,8 +4,9 @@ import 'package:flutter_todo_app/constants.dart';
 class MenuOption extends StatefulWidget {
   final String text;
   final IconData icon;
+  final String route;
 
-  MenuOption({@required this.text, this.icon});
+  MenuOption({@required this.text, @required this.route, this.icon});
 
   @override
   _MenuOptionState createState() => _MenuOptionState();
@@ -20,6 +21,19 @@ class _MenuOptionState extends State<MenuOption> {
     final itemStyle =
         Theme.of(context).textTheme.headline5.copyWith(color: color);
 
+    void handleTap(dynamic tapDetails) {
+      if (tapDetails.runtimeType == TapDownDetails) {
+        setState(() {
+          _isBeingPressed = true;
+        });
+      } else {
+        setState(() {
+          _isBeingPressed = false;
+        });
+        Navigator.pushNamed(context, widget.route);
+      }
+    }
+
     return GestureDetector(
       onTapDown: handleTap,
       onTapUp: handleTap,
@@ -32,17 +46,5 @@ class _MenuOptionState extends State<MenuOption> {
         ]),
       ),
     );
-  }
-
-  void handleTap(dynamic tapDetails) {
-    if (tapDetails.runtimeType == TapDownDetails) {
-      setState(() {
-        _isBeingPressed = true;
-      });
-    } else {
-      setState(() {
-        _isBeingPressed = false;
-      });
-    }
   }
 }

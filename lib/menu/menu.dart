@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
-import 'package:flutter_todo_app/drawer/menu_option.dart';
+import 'package:flutter_todo_app/menu/menu_option.dart';
 import 'package:flutter_todo_app/models/app_model.dart';
 
 class Menu extends StatefulWidget {
@@ -53,10 +53,13 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
         .copyWith(color: MyColor.trueWhite);
 
     final options = [
-      ['Categories', Icons.label_outline],
-      ['Done List', Icons.fact_check_outlined],
-      ['Settings', Icons.settings_outlined],
-    ].map((option) => MenuOption(text: option[0], icon: option[1])).toList();
+      ['Categories', Icons.label_outline, MyRoute.categories],
+      ['Done List', Icons.fact_check_outlined, MyRoute.done],
+      ['Settings', Icons.settings_outlined, MyRoute.settings],
+    ]
+        .map((option) =>
+            MenuOption(text: option[0], icon: option[1], route: option[2]))
+        .toList();
 
     return Container(
       color: MyColor.trueBlack,

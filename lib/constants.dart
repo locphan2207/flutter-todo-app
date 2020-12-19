@@ -52,3 +52,63 @@ class MySize {
 
   static const progressBarHeight = 2.5;
 }
+
+TextTheme fromTextTheme(textTheme) {
+  return textTheme.copyWith(
+    headline1: TextStyle(
+        color: MyColor.black,
+        fontSize: 36,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'Nunito'),
+    headline2: TextStyle(
+        color: MyColor.black,
+        fontSize: 30,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'Nunito'),
+    headline3: TextStyle(
+        color: MyColor.black,
+        fontWeight: FontWeight.w700,
+        fontSize: 22,
+        fontFamily: 'Nunito'),
+    headline4: TextStyle(
+        color: MyColor.black,
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        fontFamily: 'Nunito'),
+    headline5: TextStyle(
+        color: MyColor.black,
+        letterSpacing: 0.5,
+        fontSize: 18,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Nunito'),
+    subtitle1: TextStyle(
+        color: MyColor.lightGray,
+        letterSpacing: 1.0,
+        fontSize: 13,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'Nunito'),
+    subtitle2: TextStyle(
+        color: MyColor.lightGray,
+        letterSpacing: 0.5,
+        fontSize: 11,
+        fontWeight: FontWeight.w700,
+        fontFamily: 'Nunito'),
+    bodyText1: TextStyle(
+        color: MyColor.black,
+        letterSpacing: 0.15,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Nunito'),
+    bodyText2: TextStyle(
+        color: MyColor.black,
+        fontSize: 12,
+        fontWeight: FontWeight.w500,
+        fontFamily: 'Nunito'),
+  );
+}
+
+class MyRoute {
+  static const newTask = '/new-task';
+  static const categories = '/categories';
+  static const done = '/done';
+  static const settings = '/settings';
+}

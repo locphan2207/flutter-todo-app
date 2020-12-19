@@ -58,6 +58,10 @@ class _HomePageState extends State<HomePage>
 
   @override
   Widget build(BuildContext context) {
+    void navigateToNewtask() {
+      Navigator.pushNamed(context, MyRoute.newTask);
+    }
+
     return AnimatedBuilder(
       child: ClipRRect(
         borderRadius: BorderRadius.circular(MyRadius.device),
@@ -88,7 +92,7 @@ class _HomePageState extends State<HomePage>
                 ]),
           ),
           floatingActionButton: FloatingActionButton(
-            onPressed: () => print('hello'),
+            onPressed: navigateToNewtask,
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ),
