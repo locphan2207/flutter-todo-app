@@ -22,6 +22,7 @@ class MyCurve {
   static const taskCardSize = Curves.linear;
 
   static const newTaskClipTransition = Curves.fastOutSlowIn;
+  static const newTaskColor = Interval(0.5, 1, curve: Curves.linear);
 }
 
 class MyDuration {

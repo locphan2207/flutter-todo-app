@@ -19,7 +19,8 @@ class _NewTaskPageState extends State<NewTaskPage>
     _colorAnimation = DecorationTween(
             begin: BoxDecoration(color: Colors.blue),
             end: BoxDecoration(color: MyColor.white))
-        .animate(_controller);
+        .animate(
+            CurvedAnimation(parent: _controller, curve: MyCurve.newTaskColor));
 
     _controller.forward();
   }
