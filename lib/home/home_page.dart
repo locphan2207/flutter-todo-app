@@ -62,52 +62,48 @@ class _HomePageState extends State<HomePage>
       Navigator.pushNamed(context, MyRoute.newTask);
     }
 
-    return AnimatedBuilder(
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(MyRadius.device),
-        child: Scaffold(
-          backgroundColor: MyColor.white,
-          body: SafeArea(
-            child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  MyAppBar(),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: MySpacing.medium),
-                    child: Text('What\'s up, Tan Loc!',
-                        style: Theme.of(context).textTheme.headline2),
-                  ),
-                  SizedBox(height: MySpacing.medium),
-                  CategoryCarousel(),
-                  SizedBox(height: MySpacing.medium),
-                  Expanded(
-                      child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: MySpacing.medium),
-                    child: TaskList(),
-                  )),
-                ]),
-          ),
-          floatingActionButton: FloatingActionButton(
-            onPressed: navigateToNewtask,
-            tooltip: 'Increment',
-            child: Icon(Icons.add),
-          ),
+    var child = ClipRRect(
+      borderRadius: BorderRadius.circular(MyRadius.device),
+      child: Scaffold(
+        backgroundColor: MyColor.white,
+        body: SafeArea(
+          child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                MyAppBar(),
+                Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: MySpacing.medium),
+                  child: Text('What\'s up, Tan Loc!',
+                      style: Theme.of(context).textTheme.headline2),
+                ),
+                SizedBox(height: MySpacing.medium),
+                CategoryCarousel(),
+                SizedBox(height: MySpacing.medium),
+                Expanded(
+                    child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: MySpacing.medium),
+                  child: TaskList(),
+                )),
+              ]),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: navigateToNewtask,
+          tooltip: 'Increment',
+          child: Icon(Icons.add),
         ),
       ),
-      animation: _controller,
-      builder: (_, homeWidget) {
-        return SlideTransition(
-          position: _offsetAnimation,
-          child: ScaleTransition(
-            scale: _scaleAnimation,
-            child: homeWidget,
-          ),
-        );
-      },
+    );
+
+    return SlideTransition(
+      position: _offsetAnimation,
+      child: ScaleTransition(
+        scale: _scaleAnimation,
+        child: child,
+      ),
     );
   }
 }
