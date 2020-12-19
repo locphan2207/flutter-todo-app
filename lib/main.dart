@@ -21,29 +21,66 @@ class MyApp extends StatelessWidget {
     var theme = Theme.of(context);
     var textTheme = theme.textTheme;
 
+    var mainPage = Container(
+        color: Colors.black12,
+        child: ChangeNotifierProvider(
+            create: (context) => AppModel(),
+            child: Consumer<AppModel>(builder: (_, appModel, __) {
+              return Stack(
+                children: [
+                  Menu(appModel: appModel),
+                  HomePage(appModel: appModel),
+                ],
+              );
+            })));
+
     return MaterialApp(
-        title: 'Todo',
-        theme: ThemeData(
-          textTheme: fromTextTheme(textTheme),
-          visualDensity: VisualDensity.comfortable,
-        ),
-        home: Container(
-            color: Colors.black12,
-            child: ChangeNotifierProvider(
-                create: (context) => AppModel(),
-                child: Consumer<AppModel>(builder: (_, appModel, __) {
-                  return Stack(
-                    children: [
-                      Menu(appModel: appModel),
-                      HomePage(appModel: appModel),
-                    ],
-                  );
-                }))),
-        routes: <String, WidgetBuilder>{
-          MyRoute.newTask: (BuildContext context) => NewTaskPage(),
-          MyRoute.categories: (BuildContext context) => CategoriesPage(),
-          MyRoute.done: (BuildContext context) => DonePage(),
-          MyRoute.settings: (BuildContext context) => SettingsPage(),
-        });
+      title: 'Todo',
+      theme: ThemeData(
+        textTheme: fromTextTheme(textTheme),
+        visualDensity: VisualDensity.comfortable,
+      ),
+      home: mainPage,
+      onGenerateRoute: ((settings) {
+        switch (settings.name) {
+          case MyRoute.newTask:
+            {
+              return PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => NewTaskPage(),
+                  transitionsBuilder: (_, animation, __, child) =>
+                      FadeTransition(opacity: animation, child: child));
+            }
+            break;
+          case MyRoute.categories:
+            {
+              return PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => CategoriesPage(),
+                  transitionsBuilder: (_, animation, __, child) =>
+                      FadeTransition(opacity: animation, child: child));
+            }
+            break;
+          case MyRoute.done:
+            {
+              return PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => DonePage(),
+                  transitionsBuilder: (_, animation, __, child) =>
+                      FadeTransition(opacity: animation, child: child));
+            }
+            break;
+          case MyRoute.settings:
+            {
+              return PageRouteBuilder(
+                  pageBuilder: (_, __, ___) => SettingsPage(),
+                  transitionsBuilder: (_, animation, __, child) =>
+                      FadeTransition(opacity: animation, child: child));
+            }
+            break;
+          default:
+            {
+              return MaterialPageRoute(builder: (_) => HomePage());
+            }
+        }
+      }),
+    );
   }
 }
