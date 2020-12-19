@@ -3,18 +3,27 @@ import 'package:flutter_todo_app/constants.dart';
 
 class NewTaskPageTransition extends StatelessWidget {
   final Animation<double> _clipAnimation;
+  final Animation<Decoration> _colorAnimation;
   final Widget child;
 
   NewTaskPageTransition({@required animation, @required this.child})
       : _clipAnimation = CurvedAnimation(
-            parent: animation, curve: MyCurve.newTaskClipTransition);
+            parent: animation, curve: MyCurve.newTaskClipTransition),
+        _colorAnimation = DecorationTween(
+                begin: BoxDecoration(color: Colors.blue),
+                end: BoxDecoration(color: MyColor.white))
+            .animate(CurvedAnimation(
+                parent: animation, curve: MyCurve.newTaskColorTransition));
 
   @override
   Widget build(BuildContext context) {
     return ClipOval(
         clipBehavior: Clip.hardEdge,
         clipper: MyOvalClipper(_clipAnimation.value),
-        child: child);
+        child: DecoratedBoxTransition(
+            position: DecorationPosition.background,
+            decoration: _colorAnimation,
+            child: child));
   }
 }
 

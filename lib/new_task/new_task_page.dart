@@ -9,19 +9,14 @@ class NewTaskPage extends StatefulWidget {
 class _NewTaskPageState extends State<NewTaskPage>
     with SingleTickerProviderStateMixin {
   AnimationController _controller;
-  Animation<Decoration> _colorAnimation;
 
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
         duration: MyDuration.newTaskColorAnimation, vsync: this);
-    _colorAnimation = DecorationTween(
-            begin: BoxDecoration(color: Colors.blue),
-            end: BoxDecoration(color: MyColor.white))
-        .animate(
-            CurvedAnimation(parent: _controller, curve: MyCurve.newTaskColor));
 
+    // controller can start inner widgets init animations
     _controller.forward();
   }
 
@@ -33,12 +28,8 @@ class _NewTaskPageState extends State<NewTaskPage>
 
   @override
   Widget build(BuildContext context) {
-    return DecoratedBoxTransition(
-      position: DecorationPosition.background,
-      decoration: _colorAnimation,
-      child: Container(
-        child: SafeArea(child: Text('newtask')),
-      ),
+    return Container(
+      child: SafeArea(child: Text('newtask')),
     );
   }
 }
