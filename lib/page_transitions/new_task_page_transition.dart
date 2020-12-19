@@ -28,11 +28,11 @@ class MyOvalClipper extends CustomClipper<Rect> {
     final initLeft = size.width * 0.85;
     final initTop = size.height * 0.92;
     final finalLeft = -size.width / 2;
-    final finalTop = -size.height / 2;
+    final finalTop = -size.height / 3;
 
     final initWidth = 42;
     final initHeight = 42;
-    final finalWidth = size.width * 2;
+    final finalWidth = size.height * 2;
     final finalHeight = size.height * 2;
 
     // When value = 1, it will cancle the init left and right, and will let the final position out
