@@ -9,6 +9,7 @@ import 'package:flutter_todo_app/new_task/new_task_page.dart';
 import 'package:flutter_todo_app/done/done_page.dart';
 import 'package:flutter_todo_app/categories/categories_page.dart';
 import 'package:flutter_todo_app/constants.dart';
+import 'package:flutter_todo_app/page_transitions/new_task_page_transition.dart';
 
 void main() {
   runApp(MyApp());
@@ -46,9 +47,11 @@ class MyApp extends StatelessWidget {
           case MyRoute.newTask:
             {
               return PageRouteBuilder(
-                  pageBuilder: (_, __, ___) => NewTaskPage(),
-                  transitionsBuilder: (_, animation, __, child) =>
-                      FadeTransition(opacity: animation, child: child));
+                pageBuilder: (_, __, ___) => NewTaskPage(),
+                transitionsBuilder: (_, animation, __, child) =>
+                    NewTaskPageTransition(animation: animation, child: child),
+                transitionDuration: const Duration(seconds: 2),
+              );
             }
             break;
           case MyRoute.categories:

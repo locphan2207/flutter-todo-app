@@ -9,7 +9,8 @@ class _NewTaskPageState extends State<NewTaskPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text('newtask'),
+      color: Colors.green,
+      child: SafeArea(child: Text('newtask')),
     );
   }
 }
