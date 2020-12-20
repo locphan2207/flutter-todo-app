@@ -13,7 +13,9 @@ class NewTaskPageTransition extends StatelessWidget {
                 begin: BoxDecoration(color: Colors.blue),
                 end: BoxDecoration(color: MyColor.white))
             .animate(CurvedAnimation(
-                parent: animation, curve: MyCurve.newTaskColorTransition));
+                parent: animation,
+                curve: MyCurve.newTaskColorTransition,
+                reverseCurve: MyCurve.newTaskColorTransition.flipped));
 
   @override
   Widget build(BuildContext context) {

@@ -23,7 +23,8 @@ class MyCurve {
 
   static const newTaskClipTransition = Curves.easeInOut;
   static const newTaskColorTransition =
-      Interval(0.3, 1, curve: Curves.easeInOut);
+      Interval(0.3, 0.8, curve: Curves.easeInOut);
+  static const newTaskContent = Curves.decelerate;
 }
 
 class MyDuration {
@@ -33,7 +34,7 @@ class MyDuration {
   static const taskCardAnimation = Duration(milliseconds: 100);
 
   static const newTaskAnimation = Duration(milliseconds: 500);
-  static const newTaskColorAnimation = Duration(milliseconds: 500);
+  static const newTaskContentAnimation = Duration(milliseconds: 1200);
 }
 
 class MySpacing {
