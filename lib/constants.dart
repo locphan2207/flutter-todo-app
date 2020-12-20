@@ -34,7 +34,7 @@ class MyDuration {
   static const taskCardAnimation = Duration(milliseconds: 100);
 
   static const newTaskAnimation = Duration(milliseconds: 500);
-  static const newTaskContentAnimation = Duration(milliseconds: 1200);
+  static const newTaskContentAnimation = Duration(milliseconds: 1500);
 }
 
 class MySpacing {
