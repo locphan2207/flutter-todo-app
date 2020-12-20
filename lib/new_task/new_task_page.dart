@@ -29,7 +29,42 @@ class _NewTaskPageState extends State<NewTaskPage>
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SafeArea(child: Text('newtask')),
+      child: SafeArea(
+          child: Column(
+        children: [
+          Align(
+              alignment: Alignment.topRight,
+              child: Container(
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.only(top: 10, right: 10),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(color: MyColor.blueGray, width: 1.5)),
+                  child: Icon(Icons.close, color: MyColor.black))),
+          Material(
+            child: TextField(
+                // maxLength: 100,
+                minLines: 1,
+                maxLines: 4,
+                autofocus: false,
+                enableSuggestions: true,
+                // maxLengthEnforced: true,
+                keyboardType: TextInputType.text,
+                textInputAction: TextInputAction.done,
+                style: Theme.of(context)
+                    .textTheme
+                    .bodyText1
+                    .copyWith(fontSize: 30, height: 1.5),
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    filled: true,
+                    fillColor: MyColor.white,
+                    hintText: 'Enter a new task',
+                    contentPadding: EdgeInsets.all(10),
+                    isDense: false)),
+          ),
+        ],
+      )),
     );
   }
 }

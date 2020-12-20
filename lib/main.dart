@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     var textTheme = theme.textTheme;
 
     var mainPage = Container(
-        color: Colors.black12,
+        color: MyColor.trueBlack,
         child: ChangeNotifierProvider(
             create: (context) => AppModel(),
             child: Consumer<AppModel>(builder: (_, appModel, __) {

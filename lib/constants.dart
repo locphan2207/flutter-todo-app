@@ -21,8 +21,9 @@ class MyCurve {
   static const progressBarSize = Curves.linearToEaseOut;
   static const taskCardSize = Curves.linear;
 
-  static const newTaskClipTransition = Curves.fastOutSlowIn;
-  static const newTaskColorTransition = Interval(0.5, 1, curve: Curves.linear);
+  static const newTaskClipTransition = Curves.easeInOut;
+  static const newTaskColorTransition =
+      Interval(0.3, 1, curve: Curves.easeInOut);
 }
 
 class MyDuration {
