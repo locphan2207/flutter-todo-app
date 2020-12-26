@@ -64,6 +64,9 @@ class MySize {
   static const taskCircle = 20.0;
 
   static const progressBarHeight = 2.5;
+
+  static const bottomPageHandleHeight = 3.0;
+  static const bottomPageHandleWidth = 100.0;
 }
 
 TextTheme fromTextTheme(textTheme) {
