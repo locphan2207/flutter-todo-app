@@ -4,7 +4,7 @@ class MyColor {
   static const black = Color(0xFF020417);
   static const trueBlack = Color(0xFF0A0A0A);
   static const white = Color(0xFFF4F6FD);
-  static const trueWhite = Color(0xFFFFFFF8);
+  static const trueWhite = Color(0xFFFFFFFF);
   static const darkGray = Color(0xFF373B5e);
   static const lightGray = Color(0xFF9D9AB4);
   static const blueGray = Color(0xFFADBAEB);
@@ -12,6 +12,8 @@ class MyColor {
   static const purple = Color(0xFFA056C5);
 
   static const shadow = Color(0x509D9AB4);
+
+  static const opacityBlack = Color(0xDD000000);
 }
 
 class MyCurve {
@@ -25,6 +27,9 @@ class MyCurve {
   static const newTaskColorTransition =
       Interval(0.3, 0.8, curve: Curves.easeInOut);
   static const newTaskContent = Curves.decelerate;
+
+  static const bottomPageColorTransition =
+      Interval(0.3, 0.8, curve: Curves.easeInOut);
 }
 
 class MyDuration {

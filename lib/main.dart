@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/page_transitions/bottom_page_transition.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_todo_app/menu/menu.dart';
@@ -57,25 +58,28 @@ class MyApp extends StatelessWidget {
           case MyRoute.categories:
             {
               return PageRouteBuilder(
+                  opaque: false,
                   pageBuilder: (_, __, ___) => CategoriesPage(),
                   transitionsBuilder: (_, animation, __, child) =>
-                      FadeTransition(opacity: animation, child: child));
+                      BottomPageTransition(animation: animation, child: child));
             }
             break;
           case MyRoute.done:
             {
               return PageRouteBuilder(
+                  opaque: false,
                   pageBuilder: (_, __, ___) => DonePage(),
                   transitionsBuilder: (_, animation, __, child) =>
-                      FadeTransition(opacity: animation, child: child));
+                      BottomPageTransition(animation: animation, child: child));
             }
             break;
           case MyRoute.settings:
             {
               return PageRouteBuilder(
+                  opaque: false,
                   pageBuilder: (_, __, ___) => SettingsPage(),
                   transitionsBuilder: (_, animation, __, child) =>
-                      FadeTransition(opacity: animation, child: child));
+                      BottomPageTransition(animation: animation, child: child));
             }
             break;
           default:
