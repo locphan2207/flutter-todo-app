@@ -31,12 +31,22 @@ class _NewTaskPageState extends State<NewTaskPage>
     var closeButton = Align(
         alignment: Alignment.topRight,
         child: Container(
-            padding: EdgeInsets.all(10),
-            margin: EdgeInsets.only(top: 10, right: 10),
-            decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: MyColor.blueGray, width: 1.5)),
-            child: Icon(Icons.close, color: MyColor.black)));
+          margin: EdgeInsets.only(top: 10, right: 10),
+          child: Material(
+            child: InkWell(
+              borderRadius: BorderRadius.circular(45),
+              onTap: () => Navigator.pop(context),
+              child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(color: MyColor.blueGray, width: 1.5)),
+                child: Icon(Icons.close, color: MyColor.black),
+              ),
+            ),
+          ),
+        ));
+
     return Container(
       child: SafeArea(
           child: Column(
