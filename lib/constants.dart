@@ -30,9 +30,13 @@ class MyCurve {
 
   static const bottomPageColorTransition =
       Interval(0.3, 0.8, curve: Curves.easeInOut);
+  // This has to be linear for dragging
+  static const bottomPageSlideTransition = Curves.linear;
 }
 
 class MyDuration {
+  static const zero = Duration(milliseconds: 10);
+
   static const drawerAnimation = Duration(milliseconds: 500);
   static const menuAnimation = Duration(milliseconds: 600);
   static const progressBarAnimation = Duration(milliseconds: 1000);
@@ -40,6 +44,8 @@ class MyDuration {
 
   static const newTaskAnimation = Duration(milliseconds: 500);
   static const newTaskContentAnimation = Duration(milliseconds: 1500);
+
+  static const bottomPageAnimation = Duration(milliseconds: 200);
 }
 
 class MySpacing {

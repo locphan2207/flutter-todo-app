@@ -58,10 +58,12 @@ class MyApp extends StatelessWidget {
           case MyRoute.categories:
             {
               return PageRouteBuilder(
-                  opaque: false,
-                  pageBuilder: (_, __, ___) => CategoriesPage(),
-                  transitionsBuilder: (_, animation, __, child) =>
-                      BottomPageTransition(animation: animation, child: child));
+                opaque: false,
+                pageBuilder: (_, __, ___) => CategoriesPage(),
+                transitionsBuilder: (_, animation, __, child) =>
+                    BottomPageTransition(animation: animation, child: child),
+                transitionDuration: MyDuration.zero,
+              );
             }
             break;
           case MyRoute.done:
