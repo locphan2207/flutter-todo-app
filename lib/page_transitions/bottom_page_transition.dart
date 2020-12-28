@@ -43,9 +43,9 @@ class _BottomPageTransitionState extends State<BottomPageTransition>
     // any change to it, so it has to be done this way in order to allow dragging
     _listener = () {
       if (widget.animation.value == 1.0) {
-        _controller.animateTo(1.0, duration: MyDuration.bottomPageAnimation);
+        _toOpenPosition();
       } else {
-        _controller.animateBack(0.0, duration: MyDuration.bottomPageAnimation);
+        _toClosePosition();
       }
     };
     widget.animation.addListener(_listener);
@@ -58,10 +58,6 @@ class _BottomPageTransitionState extends State<BottomPageTransition>
     _controller.dispose();
   }
 
-// set the page controller duration to 0, so we kinda ignore it
-// we only need to see if it changes, then we will use _controller to perform
-// the transition, this way we can keep track of there the transition is, and continue the animation at any
-// position of the drag
   @override
   Widget build(BuildContext context) {
     return DecoratedBoxTransition(
@@ -71,22 +67,34 @@ class _BottomPageTransitionState extends State<BottomPageTransition>
         position: _slideAnimation,
         child: GestureDetector(
           dragStartBehavior: DragStartBehavior.start,
-          onVerticalDragUpdate: (DragUpdateDetails details) {
-            // Update _controller from the local dy, to allow dragging the element
-            final visibleHeight = context.size.height * 0.8;
-            _controller.value += -(details.primaryDelta / visibleHeight);
-          },
-          onVerticalDragEnd: (DragEndDetails details) {
-            if (_controller.value < 0.7) {
-              Navigator.pop(context);
-            } else {
-              _controller.animateTo(1.0,
-                  duration: MyDuration.bottomPageAnimation);
-            }
-          },
+          onVerticalDragUpdate: _handleDragUpdate,
+          onVerticalDragEnd: _handleDragEnd,
           child: widget.child,
         ),
       ),
     );
+  }
+
+  void _handleDragUpdate(DragUpdateDetails details) {
+    // Update _controller from the delta, to allow dragging the element
+    final visibleHeight = context.size.height * 0.8;
+    _controller.value += -(details.primaryDelta / visibleHeight);
+  }
+
+  void _handleDragEnd(DragEndDetails details) {
+    if (_controller.value < 0.5 || details.primaryVelocity > 1500) {
+      _toClosePosition();
+      Navigator.pop(context);
+    } else {
+      _toOpenPosition();
+    }
+  }
+
+  void _toOpenPosition() {
+    _controller.animateTo(1.0, duration: MyDuration.bottomPageAnimation);
+  }
+
+  void _toClosePosition() {
+    _controller.animateTo(0.0, duration: MyDuration.bottomPageAnimation);
   }
 }
