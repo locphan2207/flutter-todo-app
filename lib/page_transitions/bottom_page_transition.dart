@@ -37,6 +37,10 @@ class _BottomPageTransitionState extends State<BottomPageTransition>
             reverseCurve: MyCurve.bottomPageColorTransition.flipped));
 
     // Update _controller from the page transition animation
+    // Page transition animation has 0 duration, so it happens instantly,
+    // The reason is I only use it as a signal to let _controller know
+    // We cannot use page transition animation directly because we cannot make
+    // any change to it, so it has to be done this way in order to allow dragging
     _listener = () {
       if (widget.animation.value == 1.0) {
         _controller.animateTo(1.0, duration: MyDuration.bottomPageAnimation);

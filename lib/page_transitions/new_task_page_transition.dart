@@ -19,27 +19,16 @@ class NewTaskPageTransition extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _clipAnimation,
-      child: child,
-      builder: (ctx, childWidget) {
-        return ClipOval(
-            clipBehavior: Clip.hardEdge,
-            clipper: MyOvalClipper(_clipAnimation.value),
-            child: DecoratedBoxTransition(
-                position: DecorationPosition.background,
-                decoration: _colorAnimation,
-                child: childWidget));
-      },
-    );
-
-    // return ClipOval(
-    //     clipBehavior: Clip.hardEdge,
-    //     clipper: MyOvalClipper(_clipAnimation.value),
-    //     child: DecoratedBoxTransition(
-    //         position: DecorationPosition.background,
-    //         decoration: _colorAnimation,
-    //         child: child));
+    // It could be done using AnimatedBuilder, however it's not needed
+    // since CustomClipper allows re-build using shouldReclip, and I force
+    // it to rebuild at every animation value
+    return ClipOval(
+        clipBehavior: Clip.hardEdge,
+        clipper: MyOvalClipper(_clipAnimation.value),
+        child: DecoratedBoxTransition(
+            position: DecorationPosition.background,
+            decoration: _colorAnimation,
+            child: child));
   }
 }
 
