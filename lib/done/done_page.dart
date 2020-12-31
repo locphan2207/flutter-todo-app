@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/shared/bottom_page.dart';
 
 class DonePage extends StatefulWidget {
   @override
@@ -8,8 +9,10 @@ class DonePage extends StatefulWidget {
 class _DonePageState extends State<DonePage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('done'),
+    return BottomPage(
+      child: Container(
+        child: Text('done'),
+      ),
     );
   }
 }

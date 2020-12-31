@@ -69,19 +69,23 @@ class MyApp extends StatelessWidget {
           case MyRoute.done:
             {
               return PageRouteBuilder(
-                  opaque: false,
-                  pageBuilder: (_, __, ___) => DonePage(),
-                  transitionsBuilder: (_, animation, __, child) =>
-                      BottomPageTransition(animation: animation, child: child));
+                opaque: false,
+                pageBuilder: (_, __, ___) => DonePage(),
+                transitionsBuilder: (_, animation, __, child) =>
+                    BottomPageTransition(animation: animation, child: child),
+                transitionDuration: MyDuration.zero,
+              );
             }
             break;
           case MyRoute.settings:
             {
               return PageRouteBuilder(
-                  opaque: false,
-                  pageBuilder: (_, __, ___) => SettingsPage(),
-                  transitionsBuilder: (_, animation, __, child) =>
-                      BottomPageTransition(animation: animation, child: child));
+                opaque: false,
+                pageBuilder: (_, __, ___) => SettingsPage(),
+                transitionsBuilder: (_, animation, __, child) =>
+                    BottomPageTransition(animation: animation, child: child),
+                transitionDuration: MyDuration.zero,
+              );
             }
             break;
           default:

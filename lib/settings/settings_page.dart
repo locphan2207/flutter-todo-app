@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/shared/bottom_page.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -8,8 +9,11 @@ class SettingsPage extends StatefulWidget {
 class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('settings page'),
+    return BottomPage(
+      child: Container(
+        color: Colors.blue,
+        child: Text('settings page'),
+      ),
     );
   }
 }
