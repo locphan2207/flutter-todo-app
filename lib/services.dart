@@ -25,8 +25,6 @@ class DatabaseService {
         onCreate: _onCreate,
         onUpgrade: _onUpgrade,
         version: 1);
-    print(await getTodos());
-    print(await getCategories());
   }
 
   Future<int> createTodo(String body, int categoryId) async {
@@ -40,8 +38,9 @@ class DatabaseService {
     return todos;
   }
 
-  Future<int> createCategory(String name) async {
-    int categoryId = await db.insert(categoryTableName, {'name': name});
+  Future<int> createCategory(String name, String color) async {
+    int categoryId =
+        await db.insert(categoryTableName, {'name': name, 'color': color});
     return categoryId;
   }
 
@@ -59,13 +58,15 @@ class DatabaseService {
     await db.execute('''
         CREATE TABLE $categoryTableName (
           id INTEGER PRIMARY KEY,
-          name TEXT NOT NULL
+          name TEXT NOT NULL,
+          color CHAR(10) NOT NULL
         )
         ''');
     await db.execute('''
         CREATE TABLE $todoTableName (
           id INTEGER PRIMARY KEY,
           body TEXT NOT NULL,
+          done INTEGER DEFAULT 0,
           category_id INTEGER,
           FOREIGN KEY(category_id) REFERENCES $categoryTableName(id)
         )
