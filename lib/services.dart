@@ -25,13 +25,29 @@ class DatabaseService {
         onCreate: _onCreate,
         onUpgrade: _onUpgrade,
         version: 1);
-    print(db);
+    print(await getTodos());
+    print(await getCategories());
   }
 
-  Future<int> createNewTodo(String body, String category) async {
-    int todoId =
-        await db.insert(todoTableName, {'body': body, 'category': category});
+  Future<int> createTodo(String body, int categoryId) async {
+    int todoId = await db
+        .insert(todoTableName, {'body': body, 'category_id': categoryId});
     return todoId;
+  }
+
+  Future<List> getTodos() async {
+    final todos = await db.query(todoTableName);
+    return todos;
+  }
+
+  Future<int> createCategory(String name) async {
+    int categoryId = await db.insert(categoryTableName, {'name': name});
+    return categoryId;
+  }
+
+  Future<List> getCategories() async {
+    final categories = await db.query(categoryTableName);
+    return categories;
   }
 
   Future<void> _onConfigure(Database db) async {
