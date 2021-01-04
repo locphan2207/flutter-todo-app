@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/page_transitions/bottom_page_transition.dart';
+import 'package:flutter_todo_app/services.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_todo_app/menu/menu.dart';
@@ -13,6 +14,9 @@ import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/page_transitions/new_task_page_transition.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  // Create singleton db
+  DatabaseService();
   runApp(MyApp());
 }
 
