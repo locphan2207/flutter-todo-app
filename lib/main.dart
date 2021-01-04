@@ -14,9 +14,6 @@ import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/page_transitions/new_task_page_transition.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  // Create singleton db
-  DatabaseService();
   runApp(MyApp());
 }
 

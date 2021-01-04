@@ -7,45 +7,48 @@ final todoTableName = 'todos';
 final categoryTableName = 'categories';
 
 class DatabaseService {
-  // Singleton
-  static final DatabaseService _instance = DatabaseService._();
-  Database db;
+  static Database _db;
 
-  factory DatabaseService() {
-    return _instance;
-  }
-
-  DatabaseService._() {
-    initDatabase();
+  Future<Database> get db async {
+    if (_db == null) {
+      await initDatabase();
+    }
+    return _db;
   }
 
   Future<void> initDatabase() async {
-    db = await openDatabase(dbName,
+    _db = await openDatabase(dbName,
+        version: 1,
         onConfigure: _onConfigure,
         onCreate: _onCreate,
-        onUpgrade: _onUpgrade,
-        version: 1);
+        onUpgrade: _onUpgrade);
+    print('finished');
   }
 
+//TODO: Move these methods to models
   Future<int> createTodo(String body, int categoryId) async {
-    int todoId = await db
+    final dbClient = await db;
+    int todoId = await dbClient
         .insert(todoTableName, {'body': body, 'category_id': categoryId});
     return todoId;
   }
 
   Future<List> getTodos() async {
-    final todos = await db.query(todoTableName);
+    final dbClient = await db;
+    final todos = await dbClient.query(todoTableName);
     return todos;
   }
 
   Future<int> createCategory(String name, String color) async {
-    int categoryId =
-        await db.insert(categoryTableName, {'name': name, 'color': color});
+    final dbClient = await db;
+    int categoryId = await dbClient
+        .insert(categoryTableName, {'name': name, 'color': color});
     return categoryId;
   }
 
   Future<List> getCategories() async {
-    final categories = await db.query(categoryTableName);
+    final dbClient = await db;
+    final categories = await dbClient.query(categoryTableName);
     return categories;
   }
 
