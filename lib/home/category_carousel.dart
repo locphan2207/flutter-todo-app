@@ -27,7 +27,6 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
             return Text('Loading');
           }
           final categories = snapshot.data;
-          print('here $categories');
           if (categories.isEmpty) {
             return FlatButton(
                 onPressed: () =>

@@ -8,9 +8,11 @@ final categoryTableName = 'categories';
 
 class DatabaseService {
   static final _categoriesStreamController = StreamController<List>();
+  static final _todosStreamController = StreamController<List>();
   static Database _db;
 
   Stream<List> get categoriesStream => _categoriesStreamController.stream;
+  Stream<List> get todosStream => _todosStreamController.stream;
 
   Future<Database> get db async {
     if (_db == null) {
@@ -25,11 +27,11 @@ class DatabaseService {
         onConfigure: _onConfigure,
         onCreate: _onCreate,
         onUpgrade: _onUpgrade);
-    print('finished');
   }
 
   void close() {
     _categoriesStreamController.close();
+    _todosStreamController.close();
   }
 
 //TODO: Move these methods to models
@@ -37,12 +39,14 @@ class DatabaseService {
     final dbClient = await db;
     int todoId = await dbClient
         .insert(todoTableName, {'body': body, 'category_id': categoryId});
+    getTodos();
     return todoId;
   }
 
   Future<List> getTodos() async {
     final dbClient = await db;
     final todos = await dbClient.query(todoTableName);
+    _todosStreamController.add(todos);
     return todos;
   }
 
