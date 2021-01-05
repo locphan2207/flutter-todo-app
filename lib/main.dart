@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/page_transitions/bottom_page_transition.dart';
-import 'package:flutter_todo_app/services.dart';
 import 'package:provider/provider.dart';
 
 import 'package:flutter_todo_app/menu/menu.dart';
@@ -12,6 +10,7 @@ import 'package:flutter_todo_app/done/done_page.dart';
 import 'package:flutter_todo_app/categories/categories_page.dart';
 import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/page_transitions/new_task_page_transition.dart';
+import 'package:flutter_todo_app/page_transitions/bottom_page_transition.dart';
 
 void main() {
   runApp(MyApp());

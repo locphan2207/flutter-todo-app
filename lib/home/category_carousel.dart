@@ -1,16 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:sqflite/sqflite.dart';
 import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/services.dart';
 import 'package:flutter_todo_app/shared/carousel.dart';
 import 'package:flutter_todo_app/home/category_card.dart';
-
-const colors = {
-  'pink': Colors.pink,
-  'lightBlue': Colors.lightBlue,
-  'lightGreen': Colors.lightGreen,
-  'yellowAccent': Colors.yellowAccent,
-};
 
 class CategoryCarousel extends StatefulWidget {
   @override
@@ -32,10 +24,16 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
     return FutureBuilder<List>(
         future: _futureCategories,
         builder: (context, snapshot) {
-          print(snapshot);
-          print(snapshot.data);
           if (!snapshot.hasData) {
             return Text('Loading');
+          }
+          final categories = snapshot.data;
+          print('here $categories');
+          if (categories.isEmpty) {
+            return FlatButton(
+                onPressed: () =>
+                    Navigator.pushNamed(context, MyRoute.categories),
+                child: Text('Create a new category'));
           }
 
           return Column(
@@ -47,25 +45,16 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
                 child: Text('CATEGORIES',
                     style: Theme.of(context).textTheme.subtitle1),
               ),
-              Carousel(height: MySize.categoryCardHeight, children: <Widget>[
-                CategoryCard(
-                    title: 'Business', done: 42, total: 43, color: Colors.pink),
-                CategoryCard(
-                    title: 'Personal',
-                    done: 10,
-                    total: 44,
-                    color: Colors.lightBlue),
-                CategoryCard(
-                    title: 'Card3',
-                    done: 33,
-                    total: 45,
-                    color: Colors.lightGreen),
-                CategoryCard(
-                    title: 'Card4',
-                    done: 2,
-                    total: 23,
-                    color: Colors.yellowAccent),
-              ]),
+              Carousel(
+                height: MySize.categoryCardHeight,
+                children: categories
+                    .map((category) => CategoryCard(
+                        title: category['name'],
+                        done: 42,
+                        total: 43,
+                        color: MyColor.categoryColors[category['color']]))
+                    .toList(),
+              ),
             ],
           );
         });

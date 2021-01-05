@@ -14,6 +14,13 @@ class MyColor {
   static const shadow = Color(0x509D9AB4);
 
   static const opacityBlack = Color(0xDD000000);
+
+  static const categoryColors = {
+    'pink': Colors.pink,
+    'lightBlue': Colors.lightBlue,
+    'lightGreen': Colors.lightGreen,
+    'yellowAccent': Colors.yellowAccent,
+  };
 }
 
 class MyCurve {
