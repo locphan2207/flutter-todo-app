@@ -11,18 +11,17 @@ class CategoryCarousel extends StatefulWidget {
 
 class _CategoryCarouselState extends State<CategoryCarousel> {
   final dbService = DatabaseService();
-  Future<List> _futureCategories;
 
   @override
   void initState() {
     super.initState();
-    _futureCategories = dbService.getCategories();
+    dbService.getCategories();
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<List>(
-        future: _futureCategories,
+    return StreamBuilder<List>(
+        stream: dbService.categoriesStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Text('Loading');

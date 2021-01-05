@@ -7,7 +7,10 @@ final todoTableName = 'todos';
 final categoryTableName = 'categories';
 
 class DatabaseService {
+  static final _categoriesStreamController = StreamController<List>();
   static Database _db;
+
+  Stream<List> get categoriesStream => _categoriesStreamController.stream;
 
   Future<Database> get db async {
     if (_db == null) {
@@ -23,6 +26,10 @@ class DatabaseService {
         onCreate: _onCreate,
         onUpgrade: _onUpgrade);
     print('finished');
+  }
+
+  void close() {
+    _categoriesStreamController.close();
   }
 
 //TODO: Move these methods to models
@@ -43,12 +50,14 @@ class DatabaseService {
     final dbClient = await db;
     int categoryId = await dbClient
         .insert(categoryTableName, {'name': name, 'color': color});
+    getCategories();
     return categoryId;
   }
 
   Future<List> getCategories() async {
     final dbClient = await db;
     final categories = await dbClient.query(categoryTableName);
+    _categoriesStreamController.add(categories);
     return categories;
   }
 
