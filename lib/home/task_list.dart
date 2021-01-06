@@ -15,7 +15,6 @@ class _TaskListState extends State<TaskList> {
   void initState() {
     super.initState();
     dbService.getTodos();
-    dbService.getCategories();
   }
 
   @override
