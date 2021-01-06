@@ -10,7 +10,7 @@ class DatabaseService {
   static final _categoriesStreamController = StreamController<Map>();
   static final _todosStreamController = StreamController<Map>();
   static final _streamController = StreamController<Map>();
-  var _store = Map();
+  static final _store = Map();
   static Database _db;
 
   Stream<Map<dynamic, dynamic>> get categoriesStream =>
@@ -55,8 +55,7 @@ class DatabaseService {
     final todos = await dbClient.query(todoTableName);
     final todosMap = {for (var todo in todos) todo['id']: todo};
     _store['todos'] = todosMap;
-    _todosStreamController.add(todosMap);
-    _streamController.add(_store);
+    notify();
     return todos;
   }
 
@@ -75,9 +74,14 @@ class DatabaseService {
       for (var category in categories) category['id']: category
     };
     _store['categories'] = categoriesMap;
-    _categoriesStreamController.add(categoriesMap);
-    _streamController.add(_store);
+    notify();
     return categories;
+  }
+
+  void notify() {
+    _streamController.add(_store);
+    _categoriesStreamController.add(_store['categories']);
+    _todosStreamController.add(_store['todos']);
   }
 
   Future<void> _onConfigure(Database db) async {

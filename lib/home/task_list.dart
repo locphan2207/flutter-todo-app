@@ -23,7 +23,6 @@ class _TaskListState extends State<TaskList> {
     final list = StreamBuilder<Map>(
         stream: dbService.stream,
         builder: (context, snapshot) {
-          print(snapshot);
           if (!snapshot.hasData) {
             return Text('Loading...');
           }
