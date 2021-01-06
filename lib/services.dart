@@ -7,12 +7,16 @@ final todoTableName = 'todos';
 final categoryTableName = 'categories';
 
 class DatabaseService {
-  static final _categoriesStreamController = StreamController<List>();
-  static final _todosStreamController = StreamController<List>();
+  static final _categoriesStreamController = StreamController<Map>();
+  static final _todosStreamController = StreamController<Map>();
+  static final _streamController = StreamController<Map>();
+  var _store = Map();
   static Database _db;
 
-  Stream<List> get categoriesStream => _categoriesStreamController.stream;
-  Stream<List> get todosStream => _todosStreamController.stream;
+  Stream<Map<dynamic, dynamic>> get categoriesStream =>
+      _categoriesStreamController.stream;
+  Stream<Map> get todosStream => _todosStreamController.stream;
+  Stream<Map> get stream => _streamController.stream;
 
   Future<Database> get db async {
     if (_db == null) {
@@ -21,12 +25,15 @@ class DatabaseService {
     return _db;
   }
 
+  // With this setup, it only inits when getter db is called
   Future<void> initDatabase() async {
-    _db = await openDatabase(dbName,
-        version: 1,
-        onConfigure: _onConfigure,
-        onCreate: _onCreate,
-        onUpgrade: _onUpgrade);
+    _db = await openDatabase(
+      dbName,
+      version: 1,
+      onConfigure: _onConfigure,
+      onCreate: _onCreate,
+      onUpgrade: _onUpgrade,
+    );
   }
 
   void close() {
@@ -46,7 +53,10 @@ class DatabaseService {
   Future<List> getTodos() async {
     final dbClient = await db;
     final todos = await dbClient.query(todoTableName);
-    _todosStreamController.add(todos);
+    final todosMap = {for (var todo in todos) todo['id']: todo};
+    _store['todos'] = todosMap;
+    _todosStreamController.add(todosMap);
+    _streamController.add(_store);
     return todos;
   }
 
@@ -61,7 +71,12 @@ class DatabaseService {
   Future<List> getCategories() async {
     final dbClient = await db;
     final categories = await dbClient.query(categoryTableName);
-    _categoriesStreamController.add(categories);
+    final categoriesMap = {
+      for (var category in categories) category['id']: category
+    };
+    _store['categories'] = categoriesMap;
+    _categoriesStreamController.add(categoriesMap);
+    _streamController.add(_store);
     return categories;
   }
 

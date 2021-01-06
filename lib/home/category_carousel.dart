@@ -20,13 +20,14 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<List>(
+    return StreamBuilder<Map<dynamic, dynamic>>(
         stream: dbService.categoriesStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Text('Loading');
           }
-          final categories = snapshot.data;
+          final categories = snapshot.data.values;
+
           if (categories.isEmpty) {
             return FlatButton(
                 onPressed: () =>

@@ -15,31 +15,42 @@ class _TaskListState extends State<TaskList> {
   void initState() {
     super.initState();
     dbService.getTodos();
+    dbService.getCategories();
   }
 
   @override
   Widget build(BuildContext context) {
-    final list = StreamBuilder(
-        stream: dbService.todosStream,
+    final list = StreamBuilder<Map>(
+        stream: dbService.stream,
         builder: (context, snapshot) {
+          print(snapshot);
           if (!snapshot.hasData) {
             return Text('Loading...');
           }
 
-          final todos = snapshot.data;
+          final todosMap = snapshot.data['todos'];
+          final categoriesMap = snapshot.data['categories'];
 
+          if (todosMap == null || categoriesMap == null) {
+            return Text('Loading...');
+          }
+
+          final todos = todosMap.values;
           if (todos.isEmpty) {
-            return Text('Create a new todo using the button below');
+            return FlatButton(
+                onPressed: () => dbService.createTodo('hello', 1),
+                child: Text('Create a new todo using the button below'));
           }
 
           return Flexible(
             fit: FlexFit.loose,
             child: ListView(
               padding: EdgeInsets.symmetric(vertical: MySpacing.medium),
-              children: todos
-                  // TODO: need to fetch categories to know which color belongs to which category
-                  .map((todo) => TaskCard(todo['body'], Colors.pink))
-                  .toList(),
+              children: todos.map<Widget>((todo) {
+                final colorName = categoriesMap[todo['category_id']]['color'];
+                final color = MyColor.categoryColors[colorName];
+                return TaskCard(todo['body'], color);
+              }).toList(),
             ),
           );
         });
