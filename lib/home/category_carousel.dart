@@ -5,6 +5,10 @@ import 'package:flutter_todo_app/shared/carousel.dart';
 import 'package:flutter_todo_app/home/category_card.dart';
 
 class CategoryCarousel extends StatefulWidget {
+  final bool inCategoriesPage;
+
+  CategoryCarousel({this.inCategoriesPage = false});
+
   @override
   _CategoryCarouselState createState() => _CategoryCarouselState();
 }
@@ -29,10 +33,12 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
           final categories = snapshot.data.values;
 
           if (categories.isEmpty) {
-            return FlatButton(
-                onPressed: () =>
-                    Navigator.pushNamed(context, MyRoute.categories),
-                child: Text('Create a new category'));
+            if (widget.inCategoriesPage) {
+              return FlatButton(
+                  onPressed: () =>
+                      Navigator.pushNamed(context, MyRoute.categories),
+                  child: Text('Create a new category'));
+            }
           }
 
           return Column(

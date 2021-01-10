@@ -13,6 +13,13 @@ class CategoriesPage extends StatefulWidget {
 
 class _CategoriesPageState extends State<CategoriesPage> {
   final dbService = DatabaseService();
+  String _chosenColor = MyColor.categoryColors.keys.first;
+  String _name;
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +31,9 @@ class _CategoriesPageState extends State<CategoriesPage> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CategoryCarousel(),
+                CategoryCarousel(
+                  inCategoriesPage: true,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(MySpacing.medium),
                   child: Column(
@@ -36,21 +45,28 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       Text('Enter a name',
                           style: Theme.of(context).textTheme.headline5),
                       TextInput(
+                        onSubmitted: (String value) {
+                          _name = value;
+                        },
                         hintText: 'Category name',
                         minLines: 2,
                         maxLines: 2,
                       ),
                       Text('Pick a color',
                           style: Theme.of(context).textTheme.headline5),
-                      ColorPicker(),
+                      ColorPicker(onTap: (String colorName) {
+                        _chosenColor = colorName;
+                      }),
                     ],
                   ),
                 ),
+                FlatButton(
+                    onPressed: () {
+                      print('$_name, $_chosenColor');
+                      dbService.createCategory(_name, _chosenColor);
+                    },
+                    child: Text('Create category')),
               ],
             )));
-  }
-
-  void createRandomCategory() {
-    dbService.createCategory('Business', 'pink');
   }
 }

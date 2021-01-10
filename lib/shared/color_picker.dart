@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
 
 class ColorPicker extends StatefulWidget {
+  final Function onTap;
+
+  ColorPicker({this.onTap});
+
   @override
   _ColorPickerState createState() => _ColorPickerState();
 }
@@ -34,6 +38,7 @@ class _ColorPickerState extends State<ColorPicker> {
               setState(() {
                 _chosenColor = name;
               });
+              widget.onTap(name);
             },
             child: Container(
                 margin: EdgeInsets.all(MySpacing.medium),
