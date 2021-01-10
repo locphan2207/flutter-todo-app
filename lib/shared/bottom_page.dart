@@ -33,7 +33,7 @@ class _BottomPageState extends State<BottomPage> {
                 child: SizedBox(
                     height: MySize.bottomPageHandleHeight,
                     width: MySize.bottomPageHandleWidth)),
-            widget.child
+            Expanded(child: widget.child)
           ]),
         ),
       ),

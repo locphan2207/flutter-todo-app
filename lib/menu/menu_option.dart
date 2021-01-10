@@ -21,7 +21,7 @@ class _MenuOptionState extends State<MenuOption> {
     final itemStyle =
         Theme.of(context).textTheme.headline5.copyWith(color: color);
 
-    void handleTap(dynamic tapDetails) {
+    void _handleTap(dynamic tapDetails) {
       if (tapDetails.runtimeType == TapDownDetails) {
         setState(() {
           _isBeingPressed = true;
@@ -35,8 +35,8 @@ class _MenuOptionState extends State<MenuOption> {
     }
 
     return GestureDetector(
-      onTapDown: handleTap,
-      onTapUp: handleTap,
+      onTapDown: _handleTap,
+      onTapUp: _handleTap,
       child: Padding(
         padding: EdgeInsets.all(MySpacing.small),
         child: Row(children: [
