@@ -41,6 +41,14 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       ),
                       Text('Pick a color',
                           style: Theme.of(context).textTheme.headline5),
+                      Row(
+                          children: MyColor.categoryColors.values
+                              .map<Widget>((color) => Container(
+                                  height: MySize.taskCircle,
+                                  width: MySize.taskCircle,
+                                  decoration: BoxDecoration(
+                                      shape: BoxShape.circle, color: color)))
+                              .toList())
                     ],
                   ),
                 ),
