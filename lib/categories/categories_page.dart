@@ -13,8 +13,17 @@ class CategoriesPage extends StatefulWidget {
 
 class _CategoriesPageState extends State<CategoriesPage> {
   final dbService = DatabaseService();
+  final _textInputController = TextEditingController();
   String _chosenColor = MyColor.categoryColors.keys.first;
   String _name;
+
+  @override
+  void initState() {
+    super.initState();
+    _textInputController.addListener(() {
+      _name = _textInputController.text;
+    });
+  }
 
   @override
   void dispose() {
@@ -35,7 +44,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   inCategoriesPage: true,
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(MySpacing.medium),
+                  padding: EdgeInsets.all(MySpacing.medium),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -45,9 +54,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       Text('Enter a name',
                           style: Theme.of(context).textTheme.headline5),
                       TextInput(
-                        onSubmitted: (String value) {
-                          _name = value;
-                        },
+                        controller: _textInputController,
                         hintText: 'Category name',
                         minLines: 2,
                         maxLines: 2,
