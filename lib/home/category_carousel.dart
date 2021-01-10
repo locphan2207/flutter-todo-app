@@ -24,44 +24,44 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder<Map<dynamic, dynamic>>(
+    final streamBuilder = StreamBuilder<Map<dynamic, dynamic>>(
         stream: dbService.categoriesStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return Text('Loading');
+            return Align(alignment: Alignment.center, child: Text('Loading'));
           }
           final categories = snapshot.data.values;
 
           if (categories.isEmpty) {
-            if (widget.inCategoriesPage) {
-              return FlatButton(
-                  onPressed: () =>
-                      Navigator.pushNamed(context, MyRoute.categories),
-                  child: Text('Create a new category'));
-            }
+            return Container(
+                margin: EdgeInsets.all(MySpacing.big),
+                child: widget.inCategoriesPage
+                    ? Text('Empty',
+                        style: Theme.of(context).textTheme.subtitle1)
+                    : FlatButton(
+                        onPressed: () =>
+                            Navigator.pushNamed(context, MyRoute.categories),
+                        child: Text('Create a new category')));
           }
 
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: MySpacing.medium),
-                child: Text('CATEGORIES',
-                    style: Theme.of(context).textTheme.subtitle1),
-              ),
-              Carousel(
-                height: MySize.categoryCardHeight,
-                children: categories
-                    .map((category) => CategoryCard(
-                        title: category['name'],
-                        done: 42,
-                        total: 43,
-                        color: MyColor.categoryColors[category['color']]))
-                    .toList(),
-              ),
-            ],
+          return Carousel(
+            height: MySize.categoryCardHeight,
+            children: categories
+                .map((category) => CategoryCard(
+                    title: category['name'],
+                    done: 42,
+                    total: 43,
+                    color: MyColor.categoryColors[category['color']]))
+                .toList(),
           );
         });
+
+    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      Padding(
+          padding: const EdgeInsets.symmetric(horizontal: MySpacing.medium),
+          child:
+              Text('CATEGORIES', style: Theme.of(context).textTheme.subtitle1)),
+      streamBuilder,
+    ]);
   }
 }
