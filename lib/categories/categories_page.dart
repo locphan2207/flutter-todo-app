@@ -17,20 +17,35 @@ class _CategoriesPageState extends State<CategoriesPage> {
   Widget build(BuildContext context) {
     return BottomPage(
         child: Container(
-            margin: EdgeInsets.symmetric(vertical: MySpacing.small),
-            child: FlatButton(
-                onPressed: createRandomCategory,
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CategoryCarousel(),
-                    TextInput(
-                      hintText: 'Enter a new category',
-                    ),
-                  ],
-                ))));
+            margin: EdgeInsets.symmetric(vertical: MySpacing.medium),
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CategoryCarousel(),
+                Padding(
+                  padding: const EdgeInsets.all(MySpacing.medium),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Create a new category',
+                          style: Theme.of(context).textTheme.headline3),
+                      Text('Enter a name',
+                          style: Theme.of(context).textTheme.headline5),
+                      TextInput(
+                        hintText: 'Category name',
+                        minLines: 2,
+                        maxLines: 2,
+                      ),
+                      Text('Pick a color',
+                          style: Theme.of(context).textTheme.headline5),
+                    ],
+                  ),
+                ),
+              ],
+            )));
   }
 
   void createRandomCategory() {

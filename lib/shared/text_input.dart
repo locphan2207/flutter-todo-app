@@ -3,7 +3,12 @@ import 'package:flutter_todo_app/constants.dart';
 
 class TextInput extends StatelessWidget {
   final String hintText;
-  const TextInput({Key key, this.hintText}) : super(key: key);
+  final int minLines;
+  final int maxLines;
+
+  const TextInput(
+      {Key key, this.hintText, this.minLines = 1, this.maxLines = 4})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,8 +16,8 @@ class TextInput extends StatelessWidget {
       // TODO: use controller to control length and draw counter only when it's near max length
       child: TextField(
           // maxLength: 100,
-          minLines: 1,
-          maxLines: 4,
+          minLines: minLines,
+          maxLines: maxLines,
           autofocus: false,
           enableSuggestions: true,
           // maxLengthEnforced: true,
