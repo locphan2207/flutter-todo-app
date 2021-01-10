@@ -3,6 +3,7 @@ import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/home/category_carousel.dart';
 import 'package:flutter_todo_app/services.dart';
 import 'package:flutter_todo_app/shared/bottom_page.dart';
+import 'package:flutter_todo_app/shared/color_picker.dart';
 import 'package:flutter_todo_app/shared/text_input.dart';
 
 class CategoriesPage extends StatefulWidget {
@@ -41,14 +42,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                       ),
                       Text('Pick a color',
                           style: Theme.of(context).textTheme.headline5),
-                      Row(
-                          children: MyColor.categoryColors.values
-                              .map<Widget>((color) => Container(
-                                  height: MySize.taskCircle,
-                                  width: MySize.taskCircle,
-                                  decoration: BoxDecoration(
-                                      shape: BoxShape.circle, color: color)))
-                              .toList())
+                      ColorPicker(),
                     ],
                   ),
                 ),

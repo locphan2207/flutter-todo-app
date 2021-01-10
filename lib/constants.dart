@@ -75,6 +75,7 @@ class MySize {
   static const categoryCardWidth = 200.0;
 
   static const taskCircle = 20.0;
+  static const colorCircle = 40.0;
 
   static const progressBarHeight = 2.5;
 
