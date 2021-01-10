@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
 
 class TextInput extends StatelessWidget {
-  const TextInput({
-    Key key,
-  }) : super(key: key);
+  final String hintText;
+  const TextInput({Key key, this.hintText}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class TextInput extends StatelessWidget {
               border: InputBorder.none,
               filled: true,
               fillColor: MyColor.white,
-              hintText: 'Enter a new task',
+              hintText: hintText,
               contentPadding: EdgeInsets.all(10),
               isDense: false)),
     );

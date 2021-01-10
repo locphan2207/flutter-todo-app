@@ -7,9 +7,9 @@ final todoTableName = 'todos';
 final categoryTableName = 'categories';
 
 class DatabaseService {
-  static final _categoriesStreamController = StreamController<Map>();
-  static final _todosStreamController = StreamController<Map>();
-  static final _streamController = StreamController<Map>();
+  static final _categoriesStreamController = StreamController<Map>.broadcast();
+  static final _todosStreamController = StreamController<Map>.broadcast();
+  static final _streamController = StreamController<Map>.broadcast();
   static final _store = Map();
   static Database _db;
 

@@ -57,10 +57,11 @@ class _NewTaskPageState extends State<NewTaskPage>
               end: 0.6,
               child: closeButton),
           NewTaskContentWrapper(
-              controller: _controller,
-              start: 0.5,
-              end: 0.8,
-              child: TextInput()),
+            controller: _controller,
+            start: 0.5,
+            end: 0.8,
+            child: TextInput(hintText: 'Enter a new task'),
+          ),
         ],
       )),
     );
