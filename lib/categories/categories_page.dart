@@ -13,7 +13,7 @@ class CategoriesPage extends StatefulWidget {
 }
 
 class _CategoriesPageState extends State<CategoriesPage> {
-  final dbService = DatabaseService();
+  final _dbService = DatabaseService();
   final _textInputController = TextEditingController();
   String _chosenColor = MyColor.categoryColors.keys.first;
   String _name;
@@ -51,16 +51,16 @@ class _CategoriesPageState extends State<CategoriesPage> {
             children: [
               Text('Create a new category',
                   style: Theme.of(context).textTheme.headline3),
-              Text('Enter a name',
-                  style: Theme.of(context).textTheme.headline5),
+              // Text('Enter a name',
+              //     style: Theme.of(context).textTheme.headline5),
               TextInput(
                 controller: _textInputController,
                 hintText: 'Category name',
                 minLines: 1,
                 maxLines: 2,
               ),
-              Text('Pick a color',
-                  style: Theme.of(context).textTheme.headline5),
+              // Text('Pick a color',
+              //     style: Theme.of(context).textTheme.headline5),
               ColorPicker(onTap: (String colorName) {
                 _chosenColor = colorName;
               }),
@@ -74,7 +74,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
             child: Button(
                 onPressed: () {
                   print('$_name, $_chosenColor');
-                  dbService.createCategory(_name, _chosenColor);
+                  _dbService.createCategory(_name, _chosenColor);
                 },
                 text: 'Create category'),
           ),

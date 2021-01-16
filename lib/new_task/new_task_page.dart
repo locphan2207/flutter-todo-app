@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
+import 'package:flutter_todo_app/services.dart';
+import 'package:flutter_todo_app/shared/button.dart';
 import 'package:flutter_todo_app/shared/text_input.dart';
 
 class NewTaskPage extends StatefulWidget {
@@ -9,21 +11,27 @@ class NewTaskPage extends StatefulWidget {
 
 class _NewTaskPageState extends State<NewTaskPage>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  final _dbService = DatabaseService();
+  final _textInputController = TextEditingController();
+  AnimationController _animationController;
+  String _taskBody;
 
   @override
   void initState() {
     super.initState();
-    _controller = AnimationController(
+    _textInputController.addListener(() {
+      _taskBody = _textInputController.text;
+    });
+    _animationController = AnimationController(
         duration: MyDuration.newTaskContentAnimation, vsync: this);
 
-    _controller.forward();
+    _animationController.forward();
   }
 
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    _animationController.dispose();
   }
 
   @override
@@ -47,27 +55,44 @@ class _NewTaskPageState extends State<NewTaskPage>
           ),
         ));
 
+    var createButton = Align(
+        alignment: Alignment.bottomRight,
+        child: Container(
+            margin: EdgeInsets.only(right: MySpacing.medium),
+            child: Button(
+                onPressed: () {
+                  _dbService.createTodo(_taskBody, 1);
+                },
+                text: 'Create todo')));
+
     return Container(
       child: SafeArea(
           child: Column(
         children: [
           NewTaskContentWrapper(
-              controller: _controller,
+              controller: _animationController,
               start: 0.3,
               end: 0.6,
               child: closeButton),
           NewTaskContentWrapper(
-            controller: _controller,
+            controller: _animationController,
             start: 0.5,
             end: 0.8,
             child: TextInput(hintText: 'Enter a new task'),
           ),
+          NewTaskContentWrapper(
+            controller: _animationController,
+            start: 0.7,
+            end: 1.0,
+            child: createButton,
+          )
         ],
       )),
     );
   }
 }
 
+/// This component will allow init animation
 class NewTaskContentWrapper extends StatelessWidget {
   final AnimationController controller;
   final double start;
