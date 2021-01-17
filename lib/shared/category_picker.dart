@@ -54,7 +54,7 @@ class _CategoryPickerState extends State<CategoryPicker> {
         },
         height: MySize.colorCircle * 4,
         width: MediaQuery.of(context).size.width,
-        itemExtent: MySize.colorCircle * 1.3,
+        itemExtent: MySize.colorCircle * 1.8,
         children: children);
   }
 }

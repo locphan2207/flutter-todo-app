@@ -40,10 +40,18 @@ class _WheelPickerState extends State<WheelPicker> {
       final isChosen = currIdx == _chosenIdx;
       return Container(
         width: MediaQuery.of(context).size.width,
-        padding: EdgeInsets.symmetric(
-            vertical: MySpacing.small, horizontal: MySpacing.medium),
+        padding: EdgeInsets.all(MySpacing.medium),
+        margin: EdgeInsets.symmetric(horizontal: MySpacing.small),
         decoration: BoxDecoration(
-            color: isChosen ? MyColor.blueGray : null,
+            color: isChosen ? MyColor.lightBlueGray : null,
+            boxShadow: [
+              if (isChosen)
+                BoxShadow(
+                    color: MyColor.lightBlueGray.withOpacity(0.5),
+                    offset: Offset(0.0, 5.0),
+                    blurRadius: MyRadius.small,
+                    spreadRadius: 1.0)
+            ],
             borderRadius: BorderRadius.circular(MyRadius.small)),
         child: child,
       );

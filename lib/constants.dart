@@ -8,6 +8,8 @@ class MyColor {
   static const darkGray = Color(0xFF373B5e);
   static const lightGray = Color(0xFF9D9AB4);
   static const blueGray = Color(0xFFADBAEB);
+  static const lightBlueGray = Color(0xFFD1E3FA);
+
   static const lightBlue = Colors.blue;
   static const blue = Color(0xFF2643C4);
   static const purple = Color(0xFFA056C5);

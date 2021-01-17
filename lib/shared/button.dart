@@ -58,6 +58,7 @@ class _ButtonState extends State<Button> with SingleTickerProviderStateMixin {
     return GestureDetector(
       onTapDown: _handleTap,
       onTapUp: _handleTap,
+      onTapCancel: _handleTap,
       onTap: widget.onPressed,
       child: Transform.scale(
         scale: scale,
@@ -73,8 +74,8 @@ class _ButtonState extends State<Button> with SingleTickerProviderStateMixin {
     );
   }
 
-  void _handleTap(dynamic tapDetails) {
-    if (tapDetails.runtimeType == TapDownDetails) {
+  void _handleTap([dynamic tapDetails]) {
+    if (tapDetails != null && tapDetails.runtimeType == TapDownDetails) {
       setState(() {
         _isBeingPressed = true;
       });

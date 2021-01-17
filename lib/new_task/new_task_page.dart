@@ -3,6 +3,7 @@ import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/services.dart';
 import 'package:flutter_todo_app/shared/button.dart';
 import 'package:flutter_todo_app/shared/category_picker.dart';
+import 'package:flutter_todo_app/shared/circle_button.dart';
 import 'package:flutter_todo_app/shared/text_input.dart';
 
 class NewTaskPage extends StatefulWidget {
@@ -43,26 +44,14 @@ class _NewTaskPageState extends State<NewTaskPage>
 
   @override
   Widget build(BuildContext context) {
-    var closeButton = Align(
+    final closeButton = Align(
         alignment: Alignment.topRight,
-        child: Container(
-          margin: EdgeInsets.only(top: 10, right: 10),
-          child: Material(
-            child: InkWell(
-              borderRadius: BorderRadius.circular(45),
-              onTap: () => Navigator.pop(context),
-              child: Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(color: MyColor.blueGray, width: 1.5)),
-                child: Icon(Icons.close, color: MyColor.black),
-              ),
-            ),
-          ),
+        child: CircleButton(
+          onPressed: () => Navigator.pop(context),
+          child: Icon(Icons.close, color: MyColor.black),
         ));
 
-    var createButton = Align(
+    final createButton = Align(
         alignment: Alignment.bottomRight,
         child: Button(
             onPressed: () async {
@@ -72,7 +61,6 @@ class _NewTaskPageState extends State<NewTaskPage>
                 });
                 await _dbService.createTodo(_taskBody, _chosenCategoryId);
               } catch (err) {
-                print('error $err');
                 setState(() {
                   _hasDbError = true;
                 });
@@ -86,20 +74,21 @@ class _NewTaskPageState extends State<NewTaskPage>
             },
             text: 'Create todo'));
 
+    final error = Positioned(
+        top: 0,
+        child: Text('There was an error.',
+            style: Theme.of(context)
+                .textTheme
+                .subtitle1
+                .copyWith(color: MyColor.error)));
+
     return SafeArea(
         child: Container(
       padding: EdgeInsets.all(MySpacing.medium),
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
-          if (_hasDbError)
-            Positioned(
-                top: 0,
-                child: Text('There was an error.',
-                    style: Theme.of(context)
-                        .textTheme
-                        .subtitle1
-                        .copyWith(color: MyColor.error))),
+          if (_hasDbError) error,
           Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
