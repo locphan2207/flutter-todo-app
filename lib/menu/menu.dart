@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/menu/menu_option.dart';
 import 'package:flutter_todo_app/models/app_model.dart';
+import 'package:flutter_todo_app/shared/circle_button.dart';
+import 'package:provider/provider.dart';
 
 class Menu extends StatefulWidget {
   final AppModel appModel;
@@ -79,6 +81,14 @@ class _MenuState extends State<Menu> with SingleTickerProviderStateMixin {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Align(
+                    alignment: Alignment(0.3, -1.0),
+                    child: CircleButton(
+                        onPressed: Provider.of<AppModel>(context, listen: false)
+                            .toggleDrawer,
+                        child:
+                            Icon(Icons.navigate_before, color: MyColor.white)),
+                  ),
                   Text('Tan Loc', style: nameStyle),
                   Text('Phan', style: nameStyle),
                   Container(
