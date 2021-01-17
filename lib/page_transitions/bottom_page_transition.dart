@@ -53,9 +53,9 @@ class _BottomPageTransitionState extends State<BottomPageTransition>
 
   @override
   void dispose() {
-    super.dispose();
     widget.animation.removeListener(_listener);
     _controller.dispose();
+    super.dispose();
   }
 
   @override

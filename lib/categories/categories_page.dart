@@ -37,40 +37,37 @@ class _CategoriesPageState extends State<CategoriesPage> {
     return BottomPage(
         child: Column(
       mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CategoryCarousel(
           inCategoriesPage: true,
         ),
-        Container(
-          margin: EdgeInsets.symmetric(horizontal: MySpacing.medium),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text('Create a new category',
-                  style: Theme.of(context).textTheme.headline3),
-              // Text('Enter a name',
-              //     style: Theme.of(context).textTheme.headline5),
-              TextInput(
-                controller: _textInputController,
-                hintText: 'Category name',
-                minLines: 1,
-                maxLines: 2,
-              ),
-              // Text('Pick a color',
-              //     style: Theme.of(context).textTheme.headline5),
-              ColorPicker(onTap: (String colorName) {
-                _chosenColor = colorName;
-              }),
-            ],
+        Expanded(
+          child: Container(
+            margin: EdgeInsets.symmetric(horizontal: MySpacing.medium),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextInput(
+                  controller: _textInputController,
+                  hintText: 'Category name',
+                  minLines: 1,
+                  maxLines: 2,
+                ),
+                ColorPicker(onSelectedItemChanged: (String colorName) {
+                  _chosenColor = colorName;
+                }),
+              ],
+            ),
           ),
         ),
         Align(
           alignment: Alignment.centerRight,
           child: Container(
-            margin: EdgeInsets.only(right: MySpacing.medium),
+            margin: EdgeInsets.symmetric(
+                horizontal: MySpacing.medium, vertical: MySpacing.big),
             child: Button(
                 onPressed: () {
                   print('$_name, $_chosenColor');
