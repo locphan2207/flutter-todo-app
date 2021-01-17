@@ -19,6 +19,9 @@ class _NewTaskPageState extends State<NewTaskPage>
   String _taskBody;
   int _chosenCategoryId;
 
+  var _isLoading = false;
+  var _hasDbError = false;
+
   @override
   void initState() {
     super.initState();
@@ -62,45 +65,76 @@ class _NewTaskPageState extends State<NewTaskPage>
     var createButton = Align(
         alignment: Alignment.bottomRight,
         child: Button(
-            onPressed: () {
-              _dbService.createTodo(_taskBody, _chosenCategoryId);
+            onPressed: () async {
+              try {
+                setState(() {
+                  _isLoading = true;
+                });
+                await _dbService.createTodo(_taskBody, _chosenCategoryId);
+              } catch (err) {
+                print('error $err');
+                setState(() {
+                  _hasDbError = true;
+                });
+                return;
+              } finally {
+                setState(() {
+                  _isLoading = false;
+                });
+              }
               Navigator.pop(context);
             },
             text: 'Create todo'));
 
     return SafeArea(
         child: Container(
-      padding: EdgeInsets.symmetric(horizontal: MySpacing.medium),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      padding: EdgeInsets.all(MySpacing.medium),
+      child: Stack(
+        alignment: Alignment.topCenter,
         children: [
-          NewTaskContentWrapper(
-              controller: _animationController,
-              start: 0.3,
-              end: 0.6,
-              child: closeButton),
-          NewTaskContentWrapper(
-            controller: _animationController,
-            start: 0.5,
-            end: 0.8,
-            child: TextInput(
-                controller: _textInputController, hintText: 'Enter a new task'),
+          if (_hasDbError)
+            Positioned(
+                top: 0,
+                child: Text('There was an error.',
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle1
+                        .copyWith(color: MyColor.error))),
+          Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                NewTaskContentWrapper(
+                    controller: _animationController,
+                    start: 0.3,
+                    end: 0.6,
+                    child: closeButton),
+                NewTaskContentWrapper(
+                  controller: _animationController,
+                  start: 0.5,
+                  end: 0.8,
+                  child: TextInput(
+                      controller: _textInputController,
+                      hintText: 'Enter a new task'),
+                ),
+                NewTaskContentWrapper(
+                    controller: _animationController,
+                    start: 0.7,
+                    end: 1.0,
+                    child: CategoryPicker(
+                      onChosenCategoryChanged: (int id) {
+                        _chosenCategoryId = id;
+                      },
+                    )),
+                NewTaskContentWrapper(
+                  controller: _animationController,
+                  start: 0.9,
+                  end: 1.2,
+                  child: createButton,
+                )
+              ],
+            ),
           ),
-          NewTaskContentWrapper(
-              controller: _animationController,
-              start: 0.7,
-              end: 1.0,
-              child: CategoryPicker(
-                onChosenCategoryChanged: (int id) {
-                  _chosenCategoryId = id;
-                },
-              )),
-          NewTaskContentWrapper(
-            controller: _animationController,
-            start: 0.9,
-            end: 1.2,
-            child: createButton,
-          )
         ],
       ),
     ));

@@ -11,10 +11,11 @@ class MyColor {
   static const lightBlue = Colors.blue;
   static const blue = Color(0xFF2643C4);
   static const purple = Color(0xFFA056C5);
+  static const opacityBlack = Color(0xDD000000);
 
   static const shadow = Color(0x509D9AB4);
 
-  static const opacityBlack = Color(0xDD000000);
+  static const error = Color(0xFFFF0000);
 
   static const categoryColors = {
     'pink': Colors.pink,
