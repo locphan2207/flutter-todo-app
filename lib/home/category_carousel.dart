@@ -14,18 +14,18 @@ class CategoryCarousel extends StatefulWidget {
 }
 
 class _CategoryCarouselState extends State<CategoryCarousel> {
-  final dbService = DatabaseService();
+  final _dbService = DatabaseService();
 
   @override
   void initState() {
     super.initState();
-    dbService.getCategories();
+    _dbService.getCategories();
   }
 
   @override
   Widget build(BuildContext context) {
     final streamBuilder = StreamBuilder<Map<dynamic, dynamic>>(
-        stream: dbService.categoriesStream,
+        stream: _dbService.categoriesStream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Align(alignment: Alignment.center, child: Text('Loading'));

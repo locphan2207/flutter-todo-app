@@ -14,8 +14,10 @@ class _NewTaskPageState extends State<NewTaskPage>
     with SingleTickerProviderStateMixin {
   final _dbService = DatabaseService();
   final _textInputController = TextEditingController();
+
   AnimationController _animationController;
   String _taskBody;
+  int _chosenCategoryId;
 
   @override
   void initState() {
@@ -31,8 +33,9 @@ class _NewTaskPageState extends State<NewTaskPage>
 
   @override
   void dispose() {
-    super.dispose();
     _animationController.dispose();
+    _textInputController.dispose();
+    super.dispose();
   }
 
   @override
@@ -60,7 +63,8 @@ class _NewTaskPageState extends State<NewTaskPage>
         alignment: Alignment.bottomRight,
         child: Button(
             onPressed: () {
-              _dbService.createTodo(_taskBody, 1);
+              _dbService.createTodo(_taskBody, _chosenCategoryId);
+              Navigator.pop(context);
             },
             text: 'Create todo'));
 
@@ -79,13 +83,18 @@ class _NewTaskPageState extends State<NewTaskPage>
             controller: _animationController,
             start: 0.5,
             end: 0.8,
-            child: TextInput(hintText: 'Enter a new task'),
+            child: TextInput(
+                controller: _textInputController, hintText: 'Enter a new task'),
           ),
           NewTaskContentWrapper(
               controller: _animationController,
               start: 0.7,
               end: 1.0,
-              child: CategoryPicker()),
+              child: CategoryPicker(
+                onChosenCategoryChanged: (int id) {
+                  _chosenCategoryId = id;
+                },
+              )),
           NewTaskContentWrapper(
             controller: _animationController,
             start: 0.9,

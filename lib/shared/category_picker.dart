@@ -3,15 +3,35 @@ import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/services.dart';
 import 'package:flutter_todo_app/shared/wheel_picker.dart';
 
-class CategoryPicker extends StatelessWidget {
-  final _dbService = DatabaseService();
+class CategoryPicker extends StatefulWidget {
   final Function onChosenCategoryChanged;
   CategoryPicker({this.onChosenCategoryChanged});
 
   @override
+  _CategoryPickerState createState() => _CategoryPickerState();
+}
+
+class _CategoryPickerState extends State<CategoryPicker> {
+  final _dbService = DatabaseService();
+  Iterable<Map> _categories;
+  int _chosenId;
+
+  @override
+  void initState() {
+    super.initState();
+    _categories = _dbService.categories;
+    _chosenId = _categories.first['id'];
+    widget.onChosenCategoryChanged(_chosenId);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final categories = _dbService.categories;
-    final children = categories.map<Widget>((category) {
+    final children = _categories.map<Widget>((category) {
       final colorName = category['color'];
       final name = category['name'];
       final color = MyColor.categoryColors[colorName];
@@ -29,8 +49,8 @@ class CategoryPicker extends StatelessWidget {
 
     return WheelPicker(
         onSelectedItemChanged: (idx) {
-          final name = MyColor.categoryColors.keys.elementAt(idx);
-          onChosenCategoryChanged(name);
+          final id = _categories.elementAt(idx)['id'];
+          widget.onChosenCategoryChanged(id);
         },
         height: MySize.colorCircle * 4,
         width: MediaQuery.of(context).size.width,
