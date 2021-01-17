@@ -14,14 +14,15 @@ class CategoryPicker extends StatefulWidget {
 class _CategoryPickerState extends State<CategoryPicker> {
   final _dbService = DatabaseService();
   Iterable<Map> _categories;
-  int _chosenId;
 
   @override
   void initState() {
     super.initState();
     _categories = _dbService.categories;
-    _chosenId = _categories.first['id'];
-    widget.onChosenCategoryChanged(_chosenId);
+    if (_categories != null && _categories.isNotEmpty) {
+      final chosenId = _categories.first['id'];
+      widget.onChosenCategoryChanged(chosenId);
+    }
   }
 
   @override
@@ -31,6 +32,10 @@ class _CategoryPickerState extends State<CategoryPicker> {
 
   @override
   Widget build(BuildContext context) {
+    if (_categories == null || _categories.isEmpty) {
+      return SizedBox(height: 50, width: 50);
+    }
+
     final children = _categories.map<Widget>((category) {
       final colorName = category['color'];
       final name = category['name'];
