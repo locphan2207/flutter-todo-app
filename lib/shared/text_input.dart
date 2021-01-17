@@ -8,12 +8,14 @@ class TextInput extends StatelessWidget {
   final TextEditingController controller;
   final ValueChanged<String> onSubmitted;
   final bool autofocus;
+  final FocusNode focusNode;
 
   const TextInput(
       {Key key,
       this.hintText,
       this.controller,
       this.onSubmitted,
+      this.focusNode,
       this.minLines = 1,
       this.maxLines = 4,
       this.autofocus = false})
@@ -25,6 +27,7 @@ class TextInput extends StatelessWidget {
       // TODO: use controller to control length and draw counter only when it's near max length
       child: TextField(
           controller: controller,
+          focusNode: focusNode,
           onSubmitted: onSubmitted,
           // maxLength: 100,
           minLines: minLines,

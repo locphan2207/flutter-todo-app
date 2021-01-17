@@ -17,6 +17,7 @@ class _NewTaskPageState extends State<NewTaskPage>
   final _textInputController = TextEditingController();
 
   AnimationController _animationController;
+  FocusNode _inputFocusNode;
   String _taskBody;
   int _chosenCategoryId;
 
@@ -29,8 +30,15 @@ class _NewTaskPageState extends State<NewTaskPage>
     _textInputController.addListener(() {
       _taskBody = _textInputController.text;
     });
+
+    _inputFocusNode = FocusNode();
+
     _animationController = AnimationController(
         duration: MyDuration.newTaskContentAnimation, vsync: this);
+
+    _animationController.addStatusListener((status) {
+      if (status == AnimationStatus.completed) _inputFocusNode.requestFocus();
+    });
 
     _animationController.forward();
   }
@@ -39,6 +47,7 @@ class _NewTaskPageState extends State<NewTaskPage>
   void dispose() {
     _animationController.dispose();
     _textInputController.dispose();
+    _inputFocusNode.dispose();
     super.dispose();
   }
 
@@ -84,7 +93,7 @@ class _NewTaskPageState extends State<NewTaskPage>
 
     return SafeArea(
         child: Container(
-      padding: EdgeInsets.all(MySpacing.medium),
+      padding: EdgeInsets.all(MySpacing.xMedium),
       child: Stack(
         alignment: Alignment.topCenter,
         children: [
@@ -103,7 +112,7 @@ class _NewTaskPageState extends State<NewTaskPage>
                   start: 0.5,
                   end: 0.8,
                   child: TextInput(
-                      autofocus: true,
+                      focusNode: _inputFocusNode,
                       controller: _textInputController,
                       hintText: 'Enter a new task'),
                 ),

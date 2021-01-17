@@ -8,6 +8,10 @@ import 'package:flutter_todo_app/shared/color_picker.dart';
 import 'package:flutter_todo_app/shared/text_input.dart';
 
 class CategoriesPage extends StatefulWidget {
+  final bool shouldFocus;
+
+  CategoriesPage({this.shouldFocus = false});
+
   @override
   _CategoriesPageState createState() => _CategoriesPageState();
 }
@@ -24,6 +28,12 @@ class _CategoriesPageState extends State<CategoriesPage> {
     _textInputController.addListener(() {
       _name = _textInputController.text;
     });
+  }
+
+  @override
+  void didUpdateWidget(oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    print(widget.shouldFocus);
   }
 
   @override
