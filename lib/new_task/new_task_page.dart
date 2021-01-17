@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/services.dart';
 import 'package:flutter_todo_app/shared/button.dart';
+import 'package:flutter_todo_app/shared/color_picker.dart';
 import 'package:flutter_todo_app/shared/text_input.dart';
 
 class NewTaskPage extends StatefulWidget {
@@ -65,30 +66,34 @@ class _NewTaskPageState extends State<NewTaskPage>
                 },
                 text: 'Create todo')));
 
-    return Container(
-      child: SafeArea(
-          child: Column(
-        children: [
-          NewTaskContentWrapper(
-              controller: _animationController,
-              start: 0.3,
-              end: 0.6,
-              child: closeButton),
-          NewTaskContentWrapper(
+    return SafeArea(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        NewTaskContentWrapper(
             controller: _animationController,
-            start: 0.5,
-            end: 0.8,
-            child: TextInput(hintText: 'Enter a new task'),
-          ),
-          NewTaskContentWrapper(
+            start: 0.3,
+            end: 0.6,
+            child: closeButton),
+        NewTaskContentWrapper(
+          controller: _animationController,
+          start: 0.5,
+          end: 0.8,
+          child: TextInput(hintText: 'Enter a new task'),
+        ),
+        NewTaskContentWrapper(
             controller: _animationController,
             start: 0.7,
             end: 1.0,
-            child: createButton,
-          )
-        ],
-      )),
-    );
+            child: ColorPicker()),
+        NewTaskContentWrapper(
+          controller: _animationController,
+          start: 0.9,
+          end: 1.2,
+          child: createButton,
+        )
+      ],
+    ));
   }
 }
 

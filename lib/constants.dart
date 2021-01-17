@@ -72,8 +72,8 @@ class MyRadius {
 }
 
 class MySize {
-  static const categoryCardHeight = 150.0;
-  static const categoryCardWidth = 200.0;
+  static const categoryCardHeight = 130.0;
+  static const categoryCardWidth = 180.0;
 
   static const taskCircle = 20.0;
   static const colorCircle = 40.0;
