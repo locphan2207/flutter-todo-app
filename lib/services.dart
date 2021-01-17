@@ -6,6 +6,7 @@ final dbName = 'todo_app.db';
 final todoTableName = 'todos';
 final categoryTableName = 'categories';
 
+// TODO: Need to make Category, Todo, Store model
 class DatabaseService {
   static final _categoriesStreamController = StreamController<Map>.broadcast();
   static final _todosStreamController = StreamController<Map>.broadcast();
@@ -17,6 +18,9 @@ class DatabaseService {
       _categoriesStreamController.stream;
   Stream<Map> get todosStream => _todosStreamController.stream;
   Stream<Map> get stream => _streamController.stream;
+
+  Iterable<Map> get categories => _store['categories'].values;
+  Iterable<Map> get todos => _store['todos'].values;
 
   Future<Database> get db async {
     if (_db == null) {

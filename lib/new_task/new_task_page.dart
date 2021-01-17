@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
 import 'package:flutter_todo_app/services.dart';
 import 'package:flutter_todo_app/shared/button.dart';
-import 'package:flutter_todo_app/shared/color_picker.dart';
+import 'package:flutter_todo_app/shared/category_picker.dart';
 import 'package:flutter_todo_app/shared/text_input.dart';
 
 class NewTaskPage extends StatefulWidget {
@@ -58,41 +58,42 @@ class _NewTaskPageState extends State<NewTaskPage>
 
     var createButton = Align(
         alignment: Alignment.bottomRight,
-        child: Container(
-            margin: EdgeInsets.only(right: MySpacing.medium),
-            child: Button(
-                onPressed: () {
-                  _dbService.createTodo(_taskBody, 1);
-                },
-                text: 'Create todo')));
+        child: Button(
+            onPressed: () {
+              _dbService.createTodo(_taskBody, 1);
+            },
+            text: 'Create todo'));
 
     return SafeArea(
-        child: Column(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        NewTaskContentWrapper(
+        child: Container(
+      padding: EdgeInsets.symmetric(horizontal: MySpacing.medium),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          NewTaskContentWrapper(
+              controller: _animationController,
+              start: 0.3,
+              end: 0.6,
+              child: closeButton),
+          NewTaskContentWrapper(
             controller: _animationController,
-            start: 0.3,
-            end: 0.6,
-            child: closeButton),
-        NewTaskContentWrapper(
-          controller: _animationController,
-          start: 0.5,
-          end: 0.8,
-          child: TextInput(hintText: 'Enter a new task'),
-        ),
-        NewTaskContentWrapper(
+            start: 0.5,
+            end: 0.8,
+            child: TextInput(hintText: 'Enter a new task'),
+          ),
+          NewTaskContentWrapper(
+              controller: _animationController,
+              start: 0.7,
+              end: 1.0,
+              child: CategoryPicker()),
+          NewTaskContentWrapper(
             controller: _animationController,
-            start: 0.7,
-            end: 1.0,
-            child: ColorPicker()),
-        NewTaskContentWrapper(
-          controller: _animationController,
-          start: 0.9,
-          end: 1.2,
-          child: createButton,
-        )
-      ],
+            start: 0.9,
+            end: 1.2,
+            child: createButton,
+          )
+        ],
+      ),
     ));
   }
 }

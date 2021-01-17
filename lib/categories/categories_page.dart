@@ -56,7 +56,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   minLines: 1,
                   maxLines: 2,
                 ),
-                ColorPicker(onSelectedItemChanged: (String colorName) {
+                ColorPicker(onChosenColorChanged: (String colorName) {
                   _chosenColor = colorName;
                 }),
               ],
