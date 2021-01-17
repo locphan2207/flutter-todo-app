@@ -52,6 +52,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
               children: [
                 TextInput(
                   controller: _textInputController,
+                  autofocus: true,
                   hintText: 'Category name',
                   minLines: 1,
                   maxLines: 2,

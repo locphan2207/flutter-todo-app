@@ -7,6 +7,7 @@ class TextInput extends StatelessWidget {
   final int maxLines;
   final TextEditingController controller;
   final ValueChanged<String> onSubmitted;
+  final bool autofocus;
 
   const TextInput(
       {Key key,
@@ -14,7 +15,8 @@ class TextInput extends StatelessWidget {
       this.controller,
       this.onSubmitted,
       this.minLines = 1,
-      this.maxLines = 4})
+      this.maxLines = 4,
+      this.autofocus = false})
       : super(key: key);
 
   @override
@@ -27,7 +29,7 @@ class TextInput extends StatelessWidget {
           // maxLength: 100,
           minLines: minLines,
           maxLines: maxLines,
-          autofocus: false,
+          autofocus: autofocus,
           enableSuggestions: true,
           // maxLengthEnforced: true,
           keyboardType: TextInputType.text,

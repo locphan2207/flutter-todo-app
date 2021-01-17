@@ -103,6 +103,7 @@ class _NewTaskPageState extends State<NewTaskPage>
                   start: 0.5,
                   end: 0.8,
                   child: TextInput(
+                      autofocus: true,
                       controller: _textInputController,
                       hintText: 'Enter a new task'),
                 ),
