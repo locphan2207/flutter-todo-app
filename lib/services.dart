@@ -106,7 +106,7 @@ class DatabaseService {
           id INTEGER PRIMARY KEY,
           body TEXT NOT NULL,
           done INTEGER DEFAULT 0,
-          category_id INTEGER,
+          category_id INTEGER NOT NULL,
           FOREIGN KEY(category_id) REFERENCES $categoryTableName(id)
         )
         ''');
