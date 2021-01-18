@@ -33,11 +33,19 @@ class _CategoryPickerState extends State<CategoryPicker> {
   @override
   Widget build(BuildContext context) {
     if (_categories == null || _categories.isEmpty) {
-      return Text('Please create a category first.',
-          style: Theme.of(context)
-              .textTheme
-              .subtitle1
-              .copyWith(color: MyColor.error));
+      return Column(
+        children: [
+          Image(
+              image: AssetImage('assets/empty.png'),
+              height: MySize.emptyBoxIcon),
+          SizedBox(height: MySpacing.medium),
+          Text('Please create a category first.',
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle1
+                  .copyWith(color: MyColor.error)),
+        ],
+      );
     }
 
     final children = _categories.map<Widget>((category) {

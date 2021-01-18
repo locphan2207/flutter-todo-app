@@ -85,6 +85,8 @@ class MySize {
 
   static const bottomPageHandleHeight = 3.0;
   static const bottomPageHandleWidth = 100.0;
+
+  static const emptyBoxIcon = 100.0;
 }
 
 TextTheme fromTextTheme(textTheme) {
