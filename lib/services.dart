@@ -98,7 +98,8 @@ class DatabaseService {
         CREATE TABLE $categoryTableName (
           id INTEGER PRIMARY KEY,
           name TEXT NOT NULL,
-          color CHAR(10) NOT NULL
+          color CHAR(10) NOT NULL,
+          CHECK(name <> '')
         )
         ''');
     await db.execute('''
