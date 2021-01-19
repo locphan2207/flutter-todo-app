@@ -68,6 +68,9 @@ class _NewTaskPageState extends State<NewTaskPage>
                 setState(() {
                   _isLoading = true;
                 });
+
+                // Fake loading
+                await Future.delayed(const Duration(seconds: 1));
                 await _dbService.createTodo(_taskBody, _chosenCategoryId);
               } catch (err) {
                 setState(() {
@@ -79,8 +82,11 @@ class _NewTaskPageState extends State<NewTaskPage>
                   _isLoading = false;
                 });
               }
-              Navigator.pop(context);
+
+              // Maybe has to wait for animatoin before closing
+              // Navigator.pop(context);
             },
+            isLoading: _isLoading,
             text: 'Create todo'));
 
     final error = Positioned(

@@ -6,10 +6,16 @@ class Button extends StatefulWidget {
   final Function onPressed;
   final Color color;
   final Color textColor;
+  final bool isLoading;
+  final double width;
+  final double height;
 
   Button(
       {this.text,
       this.onPressed,
+      this.width = MySize.buttonWidth,
+      this.height = MySize.buttonHeight,
+      this.isLoading = false,
       this.color = MyColor.lightBlue,
       this.textColor = MyColor.white});
 
@@ -17,12 +23,17 @@ class Button extends StatefulWidget {
   _ButtonState createState() => _ButtonState();
 }
 
-class _ButtonState extends State<Button> with SingleTickerProviderStateMixin {
+class _ButtonState extends State<Button> with TickerProviderStateMixin {
   bool _isBeingPressed = false;
 
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didUpdateWidget(oldWidget) {
+    super.didUpdateWidget(oldWidget);
   }
 
   @override
@@ -62,14 +73,28 @@ class _ButtonState extends State<Button> with SingleTickerProviderStateMixin {
       onTap: widget.onPressed,
       child: Transform.scale(
         scale: scale,
-        child: Container(
-            padding: EdgeInsets.all(MySpacing.medium),
+        child: AnimatedContainer(
+            duration: MyDuration.buttonContainer,
+            height: widget.height,
+            // When loading, height = width for circuclar loading
+            width: widget.isLoading ? widget.height : widget.width,
             decoration: decoration,
-            child: Text(widget.text,
-                style: Theme.of(context)
-                    .textTheme
-                    .headline6
-                    .copyWith(color: MyColor.white))),
+            child: Align(
+                alignment: Alignment.center,
+                child: widget.isLoading
+                    ? SizedBox(
+                        height: MySize.buttonLoadingDiameter,
+                        width: MySize.buttonLoadingDiameter,
+                        child: CircularProgressIndicator(
+                            strokeWidth: MySize.loadingStrokeWidth,
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(MyColor.white)),
+                      )
+                    : Text(widget.text,
+                        style: Theme.of(context)
+                            .textTheme
+                            .headline6
+                            .copyWith(color: MyColor.white)))),
       ),
     );
   }

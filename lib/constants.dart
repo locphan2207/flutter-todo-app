@@ -57,6 +57,8 @@ class MyDuration {
   static const newTaskContentAnimation = Duration(milliseconds: 1500);
 
   static const bottomPageAnimation = Duration(milliseconds: 200);
+
+  static const buttonContainer = Duration(milliseconds: 100);
 }
 
 class MySpacing {
@@ -87,6 +89,12 @@ class MySize {
   static const bottomPageHandleWidth = 100.0;
 
   static const emptyBoxIcon = 100.0;
+
+  static const loadingStrokeWidth = 2.0;
+
+  static const buttonLoadingDiameter = 20.0;
+  static const buttonHeight = 50.0;
+  static const buttonWidth = 180.0;
 }
 
 TextTheme fromTextTheme(textTheme) {
