@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/home/task_list.dart';
-import 'package:flutter_todo_app/home/category_carousel.dart';
+import 'package:flutter_todo_app/services.dart';
+import 'package:flutter_todo_app/shared/category_carousel.dart';
 import 'package:flutter_todo_app/models/app_model.dart';
 import 'package:flutter_todo_app/shared/app_bar.dart';
 import 'package:flutter_todo_app/constants.dart';
@@ -15,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with SingleTickerProviderStateMixin {
+  final _dbService = DatabaseService();
   AnimationController _controller;
   Animation<Offset> _offsetAnimation;
   Animation<double> _scaleAnimation;
@@ -22,6 +24,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+    _dbService.fetchData();
     _controller = AnimationController(
         duration: MyDuration.drawerAnimation,
         reverseDuration: MyDuration.drawerAnimation,

@@ -19,7 +19,6 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
   @override
   void initState() {
     super.initState();
-    _dbService.getCategories();
   }
 
   @override

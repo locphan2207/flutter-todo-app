@@ -45,6 +45,13 @@ class DatabaseService {
     _todosStreamController.close();
   }
 
+  void fetchData() {
+    Future.wait([
+      getCategories(),
+      getTodos(),
+    ]);
+  }
+
 //TODO: Move these methods to models
   Future<int> createTodo(String body, int categoryId) async {
     final dbClient = await db;

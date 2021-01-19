@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/constants.dart';
-import 'package:flutter_todo_app/home/category_carousel.dart';
+import 'package:flutter_todo_app/shared/category_carousel.dart';
 import 'package:flutter_todo_app/services.dart';
 import 'package:flutter_todo_app/shared/bottom_page.dart';
 import 'package:flutter_todo_app/shared/button.dart';
@@ -35,7 +35,6 @@ class _CategoriesPageState extends State<CategoriesPage> {
   @override
   void didUpdateWidget(oldWidget) {
     super.didUpdateWidget(oldWidget);
-    print(widget.shouldFocus);
   }
 
   @override
