@@ -46,7 +46,7 @@ class CategoryCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.subtitle2),
                       Text(title, style: Theme.of(context).textTheme.headline3),
                       ProgressBar(
-                          ratio: done / total,
+                          ratio: total == 0 ? 0.0 : done / total,
                           accentColor: color,
                           backgroundColor: MyColor.blueGray,
                           height: MySize.progressBarHeight),

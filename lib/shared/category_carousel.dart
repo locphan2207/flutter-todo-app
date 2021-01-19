@@ -24,12 +24,20 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
   @override
   Widget build(BuildContext context) {
     final streamBuilder = StreamBuilder<Map<dynamic, dynamic>>(
-        stream: _dbService.categoriesStream,
+        stream: _dbService.stream,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Align(alignment: Alignment.center, child: Text('Loading'));
           }
-          final categories = snapshot.data.values;
+          final store = snapshot.data;
+
+          final categories = store['categories'].values;
+          final todos = store['todos'].values;
+          final countMap = _getCountMap(categories, todos);
+          print('store $store');
+          print('categories $categories');
+          print('todos $todos');
+          print('countMap $countMap');
 
           if (categories.isEmpty) {
             return Container(
@@ -46,10 +54,10 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
           return Carousel(
             height: MySize.categoryCardHeight,
             children: categories
-                .map((category) => CategoryCard(
+                .map<Widget>((category) => CategoryCard(
                     title: category['name'],
-                    done: 42,
-                    total: 43,
+                    done: countMap[category['id']]['done'],
+                    total: countMap[category['id']]['total'],
                     color: MyColor.categoryColors[category['color']]))
                 .toList(),
           );
@@ -62,5 +70,20 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
               Text('CATEGORIES', style: Theme.of(context).textTheme.subtitle1)),
       streamBuilder,
     ]);
+  }
+
+  Map _getCountMap(Iterable<Map> categories, Iterable<Map> todos) {
+    final countMap = {};
+    for (var category in categories) {
+      final id = category['id'];
+      countMap[id] = {'total': 0, 'done': 0};
+    }
+
+    for (var todo in todos) {
+      final categoryId = todo['category_id'];
+      countMap[categoryId]['total'] += 1;
+      if (todo['done']) countMap[categoryId]['done'] += 1;
+    }
+    return countMap;
   }
 }

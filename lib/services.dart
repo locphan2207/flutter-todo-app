@@ -70,6 +70,16 @@ class DatabaseService {
     return todos;
   }
 
+  Future<int> updateTodo(Map updatedTodo) async {
+    final dbClient = await db;
+    final id = updatedTodo['id'];
+    await dbClient
+        .update(todoTableName, updatedTodo, where: 'id = ?', whereArgs: [id]);
+    _store['todos'][id] = updatedTodo;
+    notify();
+    return id;
+  }
+
   Future<int> createCategory(String name, String color) async {
     final dbClient = await db;
     int categoryId = await dbClient
