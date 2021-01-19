@@ -59,6 +59,7 @@ class MyDuration {
   static const bottomPageAnimation = Duration(milliseconds: 200);
 
   static const buttonContainer = Duration(milliseconds: 100);
+  static const buttonFakeLoading = Duration(milliseconds: 1000);
 }
 
 class MySpacing {

@@ -69,8 +69,7 @@ class _NewTaskPageState extends State<NewTaskPage>
                   _isLoading = true;
                 });
 
-                // Fake loading
-                await Future.delayed(const Duration(seconds: 1));
+                await Future.delayed(MyDuration.buttonFakeLoading);
                 await _dbService.createTodo(_taskBody, _chosenCategoryId);
               } catch (err) {
                 setState(() {

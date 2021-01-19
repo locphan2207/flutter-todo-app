@@ -19,6 +19,8 @@ class CategoriesPage extends StatefulWidget {
 class _CategoriesPageState extends State<CategoriesPage> {
   final _dbService = DatabaseService();
   final _textInputController = TextEditingController();
+  bool _isLoading = false;
+  bool _hasDbError = false;
   String _chosenColor = MyColor.categoryColors.keys.first;
   String _name;
 
@@ -80,10 +82,25 @@ class _CategoriesPageState extends State<CategoriesPage> {
             margin: EdgeInsets.symmetric(
                 horizontal: MySpacing.medium, vertical: MySpacing.big),
             child: Button(
-                onPressed: () {
-                  print('$_name, $_chosenColor');
-                  _dbService.createCategory(_name, _chosenColor);
+                onPressed: () async {
+                  setState(() {
+                    _isLoading = true;
+                  });
+
+                  try {
+                    await Future.delayed(MyDuration.buttonFakeLoading);
+                    await _dbService.createCategory(_name, _chosenColor);
+                  } catch (err) {
+                    setState(() {
+                      _hasDbError = true;
+                    });
+                  } finally {
+                    setState(() {
+                      _isLoading = false;
+                    });
+                  }
                 },
+                isLoading: _isLoading,
                 text: 'Create category'),
           ),
         ),
